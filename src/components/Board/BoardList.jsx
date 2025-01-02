@@ -1,20 +1,12 @@
-const BoardList = ({ name }) => {
+const BoardList = ({ name, selected, setSelected }) => {
+  const handleClick = () => {
+    setSelected(name)
+    console.log(name)
+  }
   return (
     <>
-      <div className='border-4 border-black'>
-        <h1 className='text-4xl text-center'>{name}</h1>
-        <div className='w-[250px] h-[50px] border-4 border-orange-400'>
-          hola
-        </div>
-        <div className='w-[250px] h-[50px] border-4 border-orange-400'>
-          hola
-        </div>
-        <div className='w-[250px] h-[50px] border-4 border-orange-400'>
-          hola
-        </div>
-        <div className='w-[250px] h-[50px] border-4 border-orange-400'>
-          hola
-        </div>
+      <div className={` ${selected === name ? 'bg-blue-300' : 'bg-white'} w-full rounded-tr cursor-pointer`} onClick={() => handleClick()}>
+        <p className='text-4xl text-center'>{name}</p>
       </div>
     </>
   )

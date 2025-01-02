@@ -9,7 +9,7 @@ function App () {
       <header>
         <Header />
       </header>
-      <div className='h-full flex'>
+      <div className='flex'>
         <SideMenu />
         <MainBoard />
       </div>
