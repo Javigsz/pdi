@@ -6,10 +6,10 @@ import MainBoard from './components/Board/MainBoard'
 function App () {
   return (
     <>
-      <header>
+      <header className='text-white'>
         <Header />
       </header>
-      <div className='flex'>
+      <div className='flex text-white'>
         <SideMenu />
         <MainBoard />
       </div>
