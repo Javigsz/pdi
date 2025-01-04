@@ -15,7 +15,7 @@ const MainBoard = () => {
           <BoardList name='Anime' selected={selected} setSelected={setSelected} />
           <BoardList name='Libros' selected={selected} setSelected={setSelected} />
         </div>
-        <div className='bg-[#0f0e17] border-4 border-[#f25f4c] p-4 h-full'>
+        <div className='relative bg-[#0f0e17] border-4 border-[#f25f4c] p-4 h-full'>
           <input type='text' placeholder='Buscar' className='fixed bottom-10' />
           <div id='columns' className='flex wrap justify-between'>
             <Column name='Pendientes' selected={selected} />
