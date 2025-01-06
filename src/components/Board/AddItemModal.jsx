@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { searchFilmsApi, searchSeriesApi, searchBooksApi, searchGamesApi, searchAnimeApi } from '../../hooks/searchApi'
 import { filmDefaultImage } from '../../mocks/images'
+import { fromNameToIndex } from '../../utils/funcs'
 
-const AddItemModal = ({ setOpenModal, selected }) => {
+const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
   const [searchTitle, setSearchTitle] = useState('')
   const [searchResult, setSearchResult] = useState([])
+  const [selectValue, setSelectValue] = useState(name)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
 
   const handleSearchChange = (e) => {
@@ -14,6 +16,24 @@ const AddItemModal = ({ setOpenModal, selected }) => {
   const handleSelectItem = (item) => {
     if (selectedItem.id === item.id) setSelectedItem({ id: null, title: null, image: null })
     else setSelectedItem(item)
+  }
+
+  const handleAddItem = () => {
+    if (selectedItem.id !== null) {
+      const itemToAdd = {
+        id: crypto.randomUUID(),
+        apiId: selectedItem.id,
+        name: selectedItem.title,
+        desc: selectedItem.desc,
+        image: selectedItem.image,
+        season: selected,
+        part: 0,
+        state: fromNameToIndex(selectValue)
+      }
+      console.log(name, selected)
+      setData({ ...data, [selected]: [...data[selected], itemToAdd] })
+      setOpenModal(false)
+    }
   }
 
   const searchApi = async (title) => {
@@ -63,10 +83,16 @@ const AddItemModal = ({ setOpenModal, selected }) => {
             onChange={(e) => handleSearchChange(e)}
           />
           {/* IMPORTANTE - Hay que arreglar el select para que tenga por defecto la columna correcta */}
-          <select name='state' id='state' defaultValue={2} className='rounded-md mt-2 text-black'>
-            <option value='0'>Pendiente</option>
-            <option value='1'>Viendo</option>
-            <option value='2'>Vistas</option>
+          <select
+            name='state' id='state'
+            value={selectValue}
+            defaultValue={name}
+            onChange={(e) => setSelectValue(e.target.value)}
+            className='rounded-md mt-2 text-black'
+          >
+            <option value='Pendiente'>Pendiente</option>
+            <option value='Viendo'>Viendo</option>
+            <option value='Vistas'>Vistas</option>
           </select>
         </div>
         <div className='w-full bg-black my-4 max-h-[300px] overflow-y-auto border-x-2'>
@@ -83,10 +109,13 @@ const AddItemModal = ({ setOpenModal, selected }) => {
           )}
         </div>
         <div className='flex justify-between h-10'>
-          <button className={`${selectedItem.id ? 'bg-[#f25f4c] cursor-pointer' : 'bg-[#0f0e17] cursor-default'} rounded-md px-2 py-1 mr-2 font-bold`}>
-            Añadir
+          <button
+            className={`${selectedItem.id ? 'bg-[#f25f4c] cursor-pointer' : 'bg-[#0f0e17] cursor-default'} rounded-md px-2 py-1 mr-2 flex items-center font-bold`}
+            onClick={() => handleAddItem()}
+          >
+            Añadir: {selectedItem.id ? selectedItem.title : ''}
           </button>
-          <p className='opacity-80 text-white w-3/4 text-center'>{selectedItem && selectedItem.title}</p>
+          {/* <p className='opacity-80 text-white w-3/4 text-center'>{selectedItem && selectedItem.title}</p> */}
           <button onClick={() => setOpenModal(false)} className='rounded-md border-2 px-2 py-1 hover:bg-[#f25f4c] mr-2'>
             Cerrar
           </button>

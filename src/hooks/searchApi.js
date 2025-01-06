@@ -9,6 +9,7 @@ export const searchFilmsApi = async (query, page) => {
   const result = data.results.map((movie) => ({
     id: movie.id,
     title: movie.title,
+    desc: movie.overview || null,
     image: movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null
   }))
 
@@ -22,11 +23,10 @@ export const searchAnimeApi = async (query, page) => {
 
   const result = data.data.map((anime) => ({
     id: anime.mal_id,
+    desc: anime.synopsis || null,
     title: anime.title,
     image: anime.images.jpg.image_url || null
   }))
-
-  console.log(result)
 
   return result
 }
@@ -36,11 +36,10 @@ export const searchSeriesApi = async (query, page) => {
   const response = await fetch(url)
   const data = await response.json()
 
-  console.log(data)
-
   const result = data.results.map((serie) => ({
     id: serie.id,
     title: serie.name,
+    desc: serie.overview || null,
     image: serie.poster_path ? `https://image.tmdb.org/t/p/w500/${serie.poster_path}` : null
   }))
 
@@ -53,19 +52,18 @@ export const searchBooksApi = async (query, page) => {
   const response = await fetch(url)
   const data = await response.json()
 
-  console.log(data.docs)
+  console.log(data)
 
   const result = data.docs.map((book) => ({
     id: book.key,
     title: book.title,
+    desc: book.author_name[0] ? 'Autor: ' + book.author_name.join(', ') : null,
     image: book.cover_i
       ? 'https://covers.openlibrary.org/b/ID/' + book.cover_i + '-M.jpg'
       : (book.isbn && book.isbn[0])
           ? 'https://covers.openlibrary.org/b/ISBN/' + book.isbn[0] + '-M.jpg'
           : null
   }))
-
-  console.log(result)
 
   return result
 }
@@ -75,12 +73,33 @@ export const searchGamesApi = async (query, page) => {
   const response = await fetch(url)
   const data = await response.json()
 
-  console.log(data)
+  //   const descs = data.results.map((game) => ({
+  //     id: game.id,
+  //     genres: 'Generos: ' + game.genres.map((genre) => genre.name).join(', '),
+  //     released: 'Fecha de lanzamiento: ' + game.released,
+  //     tags: 'Etiquetas: ' + game.tags.map((tag) => tag.name).join(', '),
+  //     platforms: 'Plataformas: ' + game.platforms.map((platform) => platform.platform.name).join(', ')
+  //   }))
+
+  //   const result = data.results.map((game) => {
+  //     const desc = descs.find((desc) => desc.id === game.id)
+  //     const descString = Object.values(desc)
+  //       .filter((value, index, array) => array[index] !== desc.id)
+  //       .join(' - ')
+
+  //     return {
+  //       id: game.id,
+  //       title: game.name,
+  //       desc: descString,
+  //       image: game.background_image || null
+  //     }
+  //   })
 
   const result = data.results.map((game) => ({
     id: game.id,
     title: game.name,
-    image: game.background_image ? game.background_image : null
+    desc: 'Generos: ' + game.genres.map((genre) => genre.name).join(', ') || null,
+    image: game.background_image || null
   }))
 
   return result
