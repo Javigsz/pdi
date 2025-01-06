@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { searchFilmsApi, searchSeriesApi } from '../../hooks/searchApi'
+import { searchFilmsApi, searchSeriesApi, searchBooksApi, searchGamesApi, searchAnimeApi } from '../../hooks/searchApi'
 import { filmDefaultImage } from '../../mocks/images'
 
 const AddItemModal = ({ setOpenModal, selected }) => {
@@ -12,7 +12,7 @@ const AddItemModal = ({ setOpenModal, selected }) => {
   }
 
   const handleSelectItem = (item) => {
-    if (selectedItem.id === item.id) setSelectedItem(null)
+    if (selectedItem.id === item.id) setSelectedItem({ id: null, title: null, image: null })
     else setSelectedItem(item)
   }
 
@@ -21,6 +21,12 @@ const AddItemModal = ({ setOpenModal, selected }) => {
       return searchFilmsApi(title, 1)
     } else if (selected === 'Series') {
       return searchSeriesApi(title, 1)
+    } else if (selected === 'Libros') {
+      return searchBooksApi(title, 1)
+    } else if (selected === 'Videojuegos') {
+      return searchGamesApi(title, 1)
+    } else if (selected === 'Anime') {
+      return searchAnimeApi(title, 1)
     }
   }
 
@@ -65,8 +71,8 @@ const AddItemModal = ({ setOpenModal, selected }) => {
         </div>
         <div className='w-full bg-black my-4 max-h-[300px] overflow-y-auto border-x-2'>
           {searchResult && searchResult.map((result) => (
-            <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-1/2 h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
-              <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-10 mr-1 h-full' alt={result.title} />
+            <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-full h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
+              <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-14 h-full mr-1' alt={result.title} />
               <h2 className='opacity-80 h-20 overflow-hidden flex items-center'>{result.title}</h2>
             </div>
           ))}

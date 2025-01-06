@@ -6,7 +6,7 @@ const MainBoard = () => {
   const [selected, setSelected] = useState('Peliculas')
   return (
     <>
-      <div id='main-board' className='flex flex-col px-8 w-full bg-[#0f0e17] '>
+      <div id='main-board' className='flex flex-col px-12 w-full bg-[#161422] '>
         <div id='lists' className='flex wrap justify-start'>
           {/* Esto se puede cambiar por un bucle cuando tenga el estado */}
           <BoardList name='Peliculas' selected={selected} setSelected={setSelected} />
@@ -15,7 +15,7 @@ const MainBoard = () => {
           <BoardList name='Anime' selected={selected} setSelected={setSelected} />
           <BoardList name='Libros' selected={selected} setSelected={setSelected} />
         </div>
-        <div className='relative bg-[#0f0e17] border-4 border-[#f25f4c] p-4 h-full'>
+        <div className='relative bg-[#161422] border-4 border-[#f25f4c] p-4 h-full'>
           <input type='text' placeholder='Buscar' className='fixed bottom-10' />
           <div id='columns' className='flex wrap justify-between'>
             <Column name='Pendientes' selected={selected} />

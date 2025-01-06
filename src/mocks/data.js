@@ -5,7 +5,7 @@ export const data = {
   Peliculas: [
     {
       id: '1',
-      name: 'Pelicula 1',
+      name: 'Oppenheimer',
       desc: 'Pelicula 1 description',
       image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
       part: 4,
@@ -13,7 +13,7 @@ export const data = {
       season: 1
     }, {
       id: '2',
-      name: 'Pelicula 2',
+      name: 'Origen',
       desc: 'Pelicula 2 description',
       image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
       part: 2,
@@ -21,7 +21,7 @@ export const data = {
       season: 1
     }, {
       id: '3',
-      name: 'Pelicula 3',
+      name: 'Avatar',
       desc: 'Pelicula 3 description',
       image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
       part: 2,
@@ -29,18 +29,42 @@ export const data = {
       state: 2
     }, {
       id: '4',
-      name: 'Pelicula 4',
+      name: 'Shutter Island',
       desc: 'Pelicula 4 description',
       image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
       part: 3,
       season: 1,
       state: 1
+    }, {
+      id: '5',
+      name: 'Toy Story',
+      desc: 'Pelicula 5 description',
+      image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
+      part: 4,
+      season: 1,
+      state: 1
+    }, {
+      id: '6',
+      name: 'Avatar',
+      desc: 'Pelicula 6 description',
+      image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
+      part: 4,
+      season: 1,
+      state: 0
+    }, {
+      id: '7',
+      name: 'Avatar',
+      desc: 'Pelicula 7 description',
+      image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
+      part: 4,
+      season: 1,
+      state: 0
     }
   ],
   Series: [
     {
       id: '1',
-      name: 'Serie 1',
+      name: 'Seinfeld',
       desc: 'Serie 1 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -48,7 +72,7 @@ export const data = {
       state: 0
     }, {
       id: '2',
-      name: 'Serie 2',
+      name: 'Breaking Bad',
       desc: 'Serie 2 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -56,7 +80,7 @@ export const data = {
       state: 1
     }, {
       id: '3',
-      name: 'Serie 3',
+      name: 'Invincible',
       desc: 'Serie 3 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -64,7 +88,7 @@ export const data = {
       state: 2
     }, {
       id: '4',
-      name: 'Serie 4',
+      name: 'The crown',
       desc: 'Serie 4 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -75,28 +99,28 @@ export const data = {
   Videojuegos: [
     {
       id: '1',
-      name: 'Game 1',
+      name: 'Rayman 3',
       desc: 'Game 1 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
       state: 0
     }, {
       id: '2',
-      name: 'Game 2',
+      name: 'Fifa 18',
       desc: 'Game 2 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
       state: 1
     }, {
       id: '3',
-      name: 'Game 3',
+      name: 'New Super Mario Bros',
       desc: 'Game 3 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
       state: 2
     }, {
       id: '4',
-      name: 'Game 4',
+      name: 'Elden Ring',
       desc: 'Game 4 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -106,7 +130,7 @@ export const data = {
   Anime: [
     {
       id: '1',
-      name: 'Anime 1',
+      name: 'Attack on Titan',
       desc: 'Anime 1 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,
@@ -114,7 +138,7 @@ export const data = {
       state: 0
     }, {
       id: '2',
-      name: 'Anime 2',
+      name: 'Dandadan',
       desc: 'Anime 2 description',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08JbeYZ8ccPOp4Su1QuQ6xJueP1D-0XFYgA&s',
       part: 1,

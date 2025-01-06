@@ -18,10 +18,10 @@ const SideMenu = () => {
         </div>
         {openMenu && (
           <div>
-            <h1 className='text-white text-center font-bold'>JGSNZ PDI</h1>
+            <h1 className='text-white text-center font-bold'>Filtros PDI</h1>
             <div>
-              <h1 className='text-white text-center font-bold'>Peliculas</h1>
-              <h1 className='text-white text-center font-bold'>Series</h1>
+              <h2 className='text-white text-center font-bold'>Peliculas</h2>
+              <h2 className='text-white text-center font-bold'>Series</h2>
             </div>
           </div>
         )}

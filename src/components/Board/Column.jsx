@@ -3,6 +3,7 @@ import AddItemModal from './AddItemModal'
 import Modal from 'react-modal'
 import { data } from '../../mocks/data'
 import { useState } from 'react'
+import { IoAddCircle } from 'react-icons/io5'
 
 Modal.setAppElement(document.getElementById('root'))
 
@@ -17,8 +18,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: '50%',
-    width: '600px',
+    width: '500px',
     heigth: '900px',
     backgroundColor: '#0f0e17'
   }
@@ -29,10 +29,10 @@ const Column = ({ name, selected }) => {
 
   return (
     <>
-      <div className='w-full h-full'>
+      <div className='w-full h-auto'>
         <div className='flex justify-evenly items-center my-8'>
           <h1 className='pl-20 text-2xl text-center font-bold'>{name}</h1>
-          <button onClick={() => setOpenModal(true)} className='pr-12 text-4xl'>+</button>
+          <button onClick={() => setOpenModal(true)} className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '><IoAddCircle /></button>
         </div>
         <div className='flex flex-col items-center'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}

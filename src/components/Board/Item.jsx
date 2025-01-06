@@ -9,7 +9,7 @@ const Item = ({ item }) => {
   }
   return (
     <>
-      <div id='item' className='relative w-[350px] h-[60px] flex items-center m-2 ptbr-2 bg-gray-700 rounded-md'>
+      <div id='item' className='relative w-[300px] h-[60px] flex items-center m-2 ptbr-2 bg-gray-700 rounded-md'>
         <div id='image' className=''>
           <img src={item.image} className='rounded-md w-[50px] h-[60px]' alt='' />
         </div>
