@@ -52,8 +52,6 @@ export const searchBooksApi = async (query, page) => {
   const response = await fetch(url)
   const data = await response.json()
 
-  console.log(data)
-
   const result = data.docs.map((book) => ({
     id: book.key,
     title: book.title,

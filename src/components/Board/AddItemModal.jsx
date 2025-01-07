@@ -7,6 +7,8 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
   const [searchTitle, setSearchTitle] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [selectValue, setSelectValue] = useState(name)
+  const [page, setPage] = useState(1)
+  const [loader, setLoader] = useState(false)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
 
   const handleSearchChange = (e) => {
@@ -30,51 +32,60 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
         part: 0,
         state: fromNameToIndex(selectValue)
       }
-      console.log(name, selected)
       setData({ ...data, [selected]: [...data[selected], itemToAdd] })
       setOpenModal(false)
     }
   }
 
+  const handleClickPage = (value) => {
+    if (page + value >= 1) {
+      setPage(page + value)
+    }
+  }
+
   const searchApi = async (title) => {
     if (selected === 'Peliculas') {
-      return searchFilmsApi(title, 1)
+      return searchFilmsApi(title, page)
     } else if (selected === 'Series') {
-      return searchSeriesApi(title, 1)
+      return searchSeriesApi(title, page)
     } else if (selected === 'Libros') {
-      return searchBooksApi(title, 1)
+      return searchBooksApi(title, page)
     } else if (selected === 'Videojuegos') {
-      return searchGamesApi(title, 1)
+      return searchGamesApi(title, page)
     } else if (selected === 'Anime') {
-      return searchAnimeApi(title, 1)
+      return searchAnimeApi(title, page)
     }
   }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const results = await searchApi(searchTitle, 1)
+        const results = await searchApi(searchTitle, page)
+        setLoader(false)
         if (results.length > 0) setSearchResult(results)
         else setSearchResult(null)
       } catch (error) {
         console.error('Error fetching results:', error)
+        setLoader(false)
+        setSearchResult([])
       }
     }
 
     const timeoutId = setTimeout(() => {
+      setLoader(true)
       if (searchTitle !== '') {
         fetchData()
       }
     }, 2000) // 2 segundos de debounce
 
     return () => clearTimeout(timeoutId) // Limpia el timeout al desmontar o cambiar `searchTitle`
-  }, [searchTitle])
+  }, [searchTitle, page])
 
   return (
     <>
       <div className='h-full w-full text-white z-10'>
         <h1>Añadir {selected}</h1>
-        <div className='flex justify-between'>
+        <div className='flex justify-between relative'>
           <input
             type='text'
             placeholder='Introduce el Titulo'
@@ -83,6 +94,9 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
             onChange={(e) => handleSearchChange(e)}
           />
           {/* IMPORTANTE - Hay que arreglar el select para que tenga por defecto la columna correcta */}
+          <div className='absolute top-0 left-[190px]'>
+            {loader && <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='40' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='100' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='160' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0' /></circle></svg>}
+          </div>
           <select
             name='state' id='state'
             value={selectValue}
@@ -96,19 +110,26 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
           </select>
         </div>
         <div className='w-full bg-black my-4 max-h-[300px] overflow-y-auto border-x-2'>
-          {searchResult && searchResult.map((result) => (
+          {!loader && searchResult && searchResult.map((result) => (
             <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-full h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
               <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-14 h-full mr-1' alt={result.title} />
               <h2 className='opacity-80 h-20 overflow-hidden flex items-center'>{result.title}</h2>
             </div>
           ))}
+          {searchResult && searchResult.length === 20 && (
+            <div className='absolute bottom-[65px] right-[200px]'>
+              <button onClick={() => handleClickPage(-1)} className='mr-2 bg-[#f25f4c] p-1 rounded-sm'>&#60;</button>
+              <span>Pág. {page}</span>
+              <button onClick={() => handleClickPage(1)} className='ml-2 bg-[#f25f4c] p-1 rounded-sm'>&#62;</button>
+            </div>
+          )}
           {!searchResult && (
             <div className='flex justify-center items-center h-20'>
               <p>No se encontraron resultados</p>
             </div>
           )}
         </div>
-        <div className='flex justify-between h-10'>
+        <div className='flex justify-between h-10 mt-10'>
           <button
             className={`${selectedItem.id ? 'bg-[#f25f4c] cursor-pointer' : 'bg-[#0f0e17] cursor-default'} rounded-md px-2 py-1 mr-2 flex items-center font-bold`}
             onClick={() => handleAddItem()}

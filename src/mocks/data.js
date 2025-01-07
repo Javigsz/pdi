@@ -6,7 +6,7 @@ export const data = {
     {
       id: '1',
       apiId: '1',
-      name: 'Oppenheimer',
+      name: 'Oppenheimerffffffffffffffff ffffffffffffff fffffffff',
       desc: 'Pelicula 1 description',
       image: 'https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_.jpg',
       part: 4,
