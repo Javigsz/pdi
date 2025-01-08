@@ -4,6 +4,7 @@ import AddItemModal from './AddItemModal'
 import Modal from 'react-modal'
 import { useState } from 'react'
 import { IoAddCircle } from 'react-icons/io5'
+import { namesArray } from '../../utils/selectedArray'
 
 Modal.setAppElement(document.getElementById('root'))
 
@@ -35,12 +36,12 @@ const Column = ({ icon, name, selected, data, setData }) => {
           <h1 className='text-2xl text-center font-bold'>{name}</h1>
           <button onClick={() => setOpenModal(true)} className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '><IoAddCircle /></button>
         </div>
-        <div className='grid grid-cols-[repeat(auto-fit,_minmax(110px,_1fr))] gap-2 place-items-center'>
+        <div className='grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-2 place-items-center'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {data[selected].map((item, index) => (
-            (name === 'Pendientes' && item.state === 0 && <ItemCopy name='Pendientes' key={index} item={item} data={data} setData={setData} selected={selected} />) ||
-            (name === 'Viendo' && item.state === 1 && <ItemCopy name='Viendo' key={index} item={item} data={data} setData={setData} selected={selected} />) ||
-            (name === 'Vistas' && item.state === 2 && <ItemCopy name='Vistas' key={index} item={item} data={data} setData={setData} selected={selected} />)
+            (name === namesArray[selected][0] && item.state === 0 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
+            (name === namesArray[selected][1] && item.state === 1 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
+            (name === namesArray[selected][2] && item.state === 2 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />)
           ))}
         </div>
         {openModal &&

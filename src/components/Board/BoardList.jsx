@@ -1,7 +1,6 @@
 const BoardList = ({ name, selected, setSelected }) => {
   const handleClick = () => {
     setSelected(name)
-    console.log(name)
   }
   return (
     <>

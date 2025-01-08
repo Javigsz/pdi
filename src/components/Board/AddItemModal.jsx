@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { searchFilmsApi, searchSeriesApi, searchBooksApi, searchGamesApi, searchAnimeApi } from '../../hooks/searchApi'
 import { filmDefaultImage } from '../../mocks/images'
 import { fromNameToIndex } from '../../utils/funcs'
+import { namesArray } from '../../utils/selectedArray'
 
 const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
   const [searchTitle, setSearchTitle] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [selectValue, setSelectValue] = useState(name)
   const [page, setPage] = useState(1)
+  const prevSearchTitle = useRef('')
   const [loader, setLoader] = useState(false)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
 
@@ -28,8 +30,8 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
         name: selectedItem.title,
         desc: selectedItem.desc,
         image: selectedItem.image,
-        season: selected,
-        part: 0,
+        season: 1,
+        part: 1,
         state: fromNameToIndex(selectValue)
       }
       setData({ ...data, [selected]: [...data[selected], itemToAdd] })
@@ -40,11 +42,13 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
   const handleClickPage = (value) => {
     if (page + value >= 1) {
       setPage(page + value)
+      setLoader(true)
+      setSelectedItem({ id: null, title: null, image: null })
     }
   }
 
   const searchApi = async (title) => {
-    if (selected === 'Peliculas') {
+    if (selected === 'Películas') {
       return searchFilmsApi(title, page)
     } else if (selected === 'Series') {
       return searchSeriesApi(title, page)
@@ -52,7 +56,7 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
       return searchBooksApi(title, page)
     } else if (selected === 'Videojuegos') {
       return searchGamesApi(title, page)
-    } else if (selected === 'Anime') {
+    } else if (selected === 'Animación') {
       return searchAnimeApi(title, page)
     }
   }
@@ -61,6 +65,7 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
     const fetchData = async () => {
       try {
         const results = await searchApi(searchTitle, page)
+        prevSearchTitle.current = searchTitle
         setLoader(false)
         if (results.length > 0) setSearchResult(results)
         else setSearchResult(null)
@@ -72,13 +77,19 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
     }
 
     const timeoutId = setTimeout(() => {
-      setLoader(true)
       if (searchTitle !== '') {
+        setLoader(true)
         fetchData()
       }
     }, 2000) // 2 segundos de debounce
 
-    return () => clearTimeout(timeoutId) // Limpia el timeout al desmontar o cambiar `searchTitle`
+    return () => {
+      clearTimeout(timeoutId)
+      if (searchTitle !== prevSearchTitle.current) {
+        prevSearchTitle.current = searchTitle
+        setPage(1)
+      }
+    }// Limpia el timeout al desmontar o cambiar `searchTitle`
   }, [searchTitle, page])
 
   return (
@@ -104,23 +115,23 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
             onChange={(e) => setSelectValue(e.target.value)}
             className='rounded-md mt-2 text-black'
           >
-            <option value='Pendiente'>Pendiente</option>
-            <option value='Viendo'>Viendo</option>
-            <option value='Vistas'>Vistas</option>
+            <option value={namesArray[selected][0]}>{namesArray[selected][0]}</option>
+            <option value={namesArray[selected][1]}>{namesArray[selected][1]}</option>
+            <option value={namesArray[selected][2]}>{namesArray[selected][2]}</option>
           </select>
         </div>
         <div className='w-full bg-black my-4 max-h-[300px] overflow-y-auto border-x-2'>
-          {!loader && searchResult && searchResult.map((result) => (
+          {searchResult && searchResult.map((result) => (
             <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-full h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
               <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-14 h-full mr-1' alt={result.title} />
               <h2 className='opacity-80 h-20 overflow-hidden flex items-center'>{result.title}</h2>
             </div>
           ))}
-          {searchResult && searchResult.length === 20 && (
+          {searchResult && searchResult.length > 0 && (
             <div className='absolute bottom-[65px] right-[200px]'>
-              <button onClick={() => handleClickPage(-1)} className='mr-2 bg-[#f25f4c] p-1 rounded-sm'>&#60;</button>
+              {page > 1 && <button disabled={loader} onClick={() => handleClickPage(-1)} className={`mr-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}>&#60;</button>}
               <span>Pág. {page}</span>
-              <button onClick={() => handleClickPage(1)} className='ml-2 bg-[#f25f4c] p-1 rounded-sm'>&#62;</button>
+              {searchResult.length >= 20 && <button disabled={loader} onClick={() => handleClickPage(1)} className={`ml-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}>&#62;</button>}
             </div>
           )}
           {!searchResult && (

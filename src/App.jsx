@@ -10,13 +10,13 @@ function App () {
 
   return (
     <>
-      <header className='text-white'>
+      <header className='text-white font-roboto-slab'>
         <Header />
       </header>
-      <div className='flex text-white'>
+      <main className='flex text-white font-roboto-slab'>
         <SideMenu />
         <MainBoard data={tablesData} setData={setTablesData} />
-      </div>
+      </main>
     </>
   )
 }
