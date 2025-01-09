@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { searchFilmsApi, searchSeriesApi, searchBooksApi, searchGamesApi, searchAnimeApi } from '../../hooks/searchApi'
 import { filmDefaultImage } from '../../mocks/images'
-import { fromNameToIndex } from '../../utils/funcs'
+import { fromNameToIndex, formatDate } from '../../utils/funcs'
 import { namesArray } from '../../utils/selectedArray'
 
 const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
@@ -24,6 +24,9 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
 
   const handleAddItem = () => {
     if (selectedItem.id !== null) {
+      const today = new Date()
+      const formattedDate = formatDate(today)
+
       const itemToAdd = {
         id: crypto.randomUUID(),
         apiId: selectedItem.id,
@@ -32,8 +35,10 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
         image: selectedItem.image,
         season: 1,
         part: 1,
+        added: formattedDate,
         state: fromNameToIndex(selectValue)
       }
+      console.log(itemToAdd)
       setData({ ...data, [selected]: [...data[selected], itemToAdd] })
       setOpenModal(false)
     }
@@ -94,7 +99,7 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
 
   return (
     <>
-      <div className='h-full w-full text-white z-10'>
+      <div className='h-full w-full text-white z-10 font-roboto-slab'>
         <h1>Añadir {selected}</h1>
         <div className='flex justify-between relative'>
           <input
@@ -105,13 +110,12 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
             onChange={(e) => handleSearchChange(e)}
           />
           {/* IMPORTANTE - Hay que arreglar el select para que tenga por defecto la columna correcta */}
-          <div className='absolute top-0 left-[190px]'>
+          <div className='absolute top-0 left-[200px]'>
             {loader && <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='40' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='100' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='160' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0' /></circle></svg>}
           </div>
           <select
             name='state' id='state'
             value={selectValue}
-            defaultValue={name}
             onChange={(e) => setSelectValue(e.target.value)}
             className='rounded-md mt-2 text-black'
           >
@@ -120,7 +124,7 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
             <option value={namesArray[selected][2]}>{namesArray[selected][2]}</option>
           </select>
         </div>
-        <div className='w-full bg-black my-4 max-h-[300px] overflow-y-auto border-x-2'>
+        <div className={`w-full bg-black my-4 max-h-[300px] ${loader && 'opacity-50'} overflow-y-auto border-x-2`}>
           {searchResult && searchResult.map((result) => (
             <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-full h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
               <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-14 h-full mr-1' alt={result.title} />

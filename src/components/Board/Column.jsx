@@ -2,31 +2,18 @@
 import ItemCopy from './ItemCopy'
 import AddItemModal from './AddItemModal'
 import Modal from 'react-modal'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { IoAddCircle } from 'react-icons/io5'
 import { namesArray } from '../../utils/selectedArray'
+import { FiltersContext } from '../../context/filters'
+import { orderResults } from '../../utils/funcs'
+import { customStyles } from '../../utils/modalStyle'
 
 Modal.setAppElement(document.getElementById('root'))
 
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '500px',
-    heigth: '900px',
-    backgroundColor: '#0f0e17'
-  }
-}
-
 const Column = ({ icon, name, selected, data, setData }) => {
   const [openModal, setOpenModal] = useState(false)
+  const { searchText, order } = useContext(FiltersContext)
 
   return (
     <>
@@ -38,7 +25,7 @@ const Column = ({ icon, name, selected, data, setData }) => {
         </div>
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-2 place-items-center'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
-          {data[selected].map((item, index) => (
+          {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item, index) => (
             (name === namesArray[selected][0] && item.state === 0 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
             (name === namesArray[selected][1] && item.state === 1 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
             (name === namesArray[selected][2] && item.state === 2 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />)
