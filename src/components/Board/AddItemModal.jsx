@@ -38,8 +38,9 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
         season: 1,
         part: 1,
         added: formattedDate,
-        state: fromNameToIndex(selectValue)
+        state: fromNameToIndex(selectValue, selected)
       }
+      console.log(selectValue)
       setData({ ...data, [selected]: [...data[selected], itemToAdd] })
       setOpenModal(false)
     }

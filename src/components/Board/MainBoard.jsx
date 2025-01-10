@@ -12,7 +12,7 @@ const MainBoard = ({ data, setData }) => {
   return (
     <>
       <SideMenu />
-      <div id='main-board' className='flex flex-col w-full bg-[#161422]'>
+      <div id='main-board' className='flex flex-col w-full bg-[#16142f]'>
         <div id='lists' className='flex wrap justify-start'>
           {/* Esto se puede cambiar por un bucle cuando tenga el estado */}
           <BoardList name='Películas' />
@@ -21,7 +21,7 @@ const MainBoard = ({ data, setData }) => {
           <BoardList name='Animación' />
           <BoardList name='Libros' />
         </div>
-        <div className='relative border-4 border-[#f25f4c] bg-[#161422] bg-no-repeat bg-cover p-4 h-full'>
+        <div className='relative border-4 border-[#f25f4c] bg-[#16142f] bg-no-repeat bg-cover py-4 pr-20 h-full'>
           <input
             type='text'
             placeholder='Buscar'

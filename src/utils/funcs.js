@@ -1,11 +1,17 @@
-export const fromNameToIndex = (name) => (name === 'Pendientes' ? 0 : name === 'Viendo' ? 1 : name === 'Vistas' ? 2 : null)
+import { namesArray } from './selectedArray'
+
+export const fromNameToIndex = (name, selected) => {
+  if (name === namesArray[selected][0]) return 0
+  if (name === namesArray[selected][1]) return 1
+  if (name === namesArray[selected][2]) return 2
+}
 
 export const getItemUrl = (item, type) => {
-  if (type === 'Peliculas') return `https://www.themoviedb.org/movie/${item.apiId}`
+  if (type === 'Películas') return `https://www.themoviedb.org/movie/${item.apiId}`
   if (type === 'Series') return `https://www.themoviedb.org/tv/${item.apiId}`
   if (type === 'Libros') return `https://openlibrary.org/${item.apiId}`
   if (type === 'Videojuegos') return `https://rawg.io/games/${item.apiId}`
-  if (type === 'Anime') return `https://myanimelist.net/anime/${item.apiId}`
+  if (type === 'Animación') return `https://myanimelist.net/anime/${item.apiId}`
   return null
 }
 

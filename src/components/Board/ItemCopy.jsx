@@ -37,20 +37,20 @@ const ItemCopy = ({ item, data, setData }) => {
     <>
       <div
         id='item' className='relative group w-[130px] h-[190px] flex items-center m-2 bg-black rounded-md
-        hover:border-2 hover:w-[300px] hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
-        transition-all duration-100 ease-in-out'
+        hover:border-2 hover:w-[320px] hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
+        transition-all duration-300 ease-in-out'
       >
         <div className='flex items-center h-full w-full flex-col jsutify-center group-hover:flex-row'>
-          <div id='image' className='h-[150px] w-full group-hover:w-[40%] group-hover:h-full'>
+          <div id='image' className='h-full w-full group-hover:w-[40%] group-hover:h-full'>
             <img src={item.image} className='rounded-t-md w-full h-full group-hover:rounded-md' alt='' />
           </div>
-          <div id='title' className='overflow-hidden px-4 flex group-hover:max-w-[60%] '>
+          <div id='title' className='overflow-hidden hidden px-4 group-hover:flex group-hover:max-w-[60%] '>
             <p className='text-xs w-full break-words opacity-80 text-center group-hover:opacity-100 group-hover:font-bold group-hover:text-base group-hover:text-[#f25f4c] group'>{item.name}</p>
           </div>
           {item.state !== 0 && (
             <div id='buttons' className='flex opacity-0 group-hover:opacity-80 absolute top-2 flex-col left-[132px] '>
-              <div className='text-xs group-hover:block hidden'>{selectedArray[selected][0]}: <input type='number' min={0} max={4999} value={item.season} onChange={e => handleInputChangeSeason(e)} className='text-center bg-gray-700 border-[1px] font-bold w-10 rounded-md' /></div>
-              <div className='text-xs group-hover:block hidden'>{selectedArray[selected][1]}: <input type='number' min={0} max={4999} value={item.part} onChange={e => handleInputChangePart(e)} className='text-center bg-gray-700 border-[1px] font-bold w-14 rounded-md' /></div>
+              <div className='text-xs group-hover:block hidden'>{selectedArray[selected][0]}: <input type='number' min={0} max={4999} value={item.season} onChange={e => handleInputChangeSeason(e)} className='text-center bg-transparent border-[1px] font-bold w-10 rounded-md' /></div>
+              <div className='text-xs group-hover:block hidden'>{selectedArray[selected][1]}: <input type='number' min={0} max={4999} value={item.part} onChange={e => handleInputChangePart(e)} className='text-center bg-transparent border-[1px] font-bold w-14 rounded-md' /></div>
             </div>
           )}
         </div>
@@ -73,7 +73,7 @@ const ItemCopy = ({ item, data, setData }) => {
           className='absolute z-20 hidden group-hover:block right-0 top-0'
           onClick={() => { handleDeleteItem() }}
         >
-          <TiDelete color='#f25f4c' size={20} />
+          <TiDelete color='red' size={25} />
         </button>
       </div>
     </>

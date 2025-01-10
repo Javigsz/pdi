@@ -88,7 +88,7 @@ export const data = {
   Series: [
     {
       id: '1',
-      apiId: '1259888',
+      apiId: '125988',
       name: 'Silo',
       desc: 'Serie 1 description',
       image: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ak7NFISSaROyoWjSOIjamhpt1LB.jpg',

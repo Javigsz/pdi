@@ -2,9 +2,11 @@ import './App.css'
 import Header from './components/Header'
 import MainBoard from './components/Board/MainBoard'
 import Login from './components/Login'
+import Help from './components/Help'
+import Contact from './components/Contact'
 import { data } from './mocks/data'
 import { useState } from 'react'
-import { Route } from 'wouter'
+import { Route, Switch } from 'wouter'
 import { FiltersProvider } from './context/filters.jsx'
 
 function App () {
@@ -18,20 +20,17 @@ function App () {
           <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </header>
         <main className='flex text-white font-roboto-slab justify-center'>
-          <Route path='/contact' component={() => <h1>Contact</h1>} />
-          <Route path='/help' component={() => <h1>Help</h1>} />
-          <Route
-            path='/'
-            component={() =>
-              !isLoggedIn
-                ? (
-                  <Login setIsLoggedIn={setIsLoggedIn} />
-                  )
-                : (
-                  <MainBoard data={tablesData} setData={setTablesData} />
-                  )}
-          />
-
+          <Switch>
+            <Route path='/contact'> <Contact /> </Route>
+            <Route path='/help'> <Help /> </Route>
+            <Route path='/'>
+              {() =>
+                !isLoggedIn
+                  ? <Login setIsLoggedIn={setIsLoggedIn} />
+                  : <MainBoard data={tablesData} setData={setTablesData} />}
+            </Route>
+            <Route> <h1>404 not found</h1> </Route>
+          </Switch>
         </main>
       </FiltersProvider>
     </>
