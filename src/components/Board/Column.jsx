@@ -11,9 +11,9 @@ import { customStyles } from '../../utils/modalStyle'
 
 Modal.setAppElement(document.getElementById('root'))
 
-const Column = ({ icon, name, selected, data, setData }) => {
+const Column = ({ icon, name, data, setData }) => {
   const [openModal, setOpenModal] = useState(false)
-  const { searchText, order } = useContext(FiltersContext)
+  const { searchText, order, selected } = useContext(FiltersContext)
 
   return (
     <>

@@ -6,6 +6,7 @@ export const FiltersContext = createContext()
 // Este es el que nos provee de acceso al contexto
 export function FiltersProvider ({ children }) {
   const [searchText, setSearchText] = useState('')
+  const [selected, setSelected] = useState('Películas')
   const [order, setOrder] = useState({
     type: 'added',
     direction: 'desc'
@@ -16,7 +17,9 @@ export function FiltersProvider ({ children }) {
       searchText,
       setSearchText,
       order,
-      setOrder
+      setOrder,
+      selected,
+      setSelected
     }}
     >
       {children}

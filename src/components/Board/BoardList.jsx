@@ -1,4 +1,8 @@
-const BoardList = ({ name, selected, setSelected }) => {
+import { useContext } from 'react'
+import { FiltersContext } from '../../context/filters'
+
+const BoardList = ({ name }) => {
+  const { selected, setSelected } = useContext(FiltersContext)
   const handleClick = () => {
     setSelected(name)
   }

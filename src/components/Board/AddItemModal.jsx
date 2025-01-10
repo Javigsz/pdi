@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { searchFilmsApi, searchSeriesApi, searchBooksApi, searchGamesApi, searchAnimeApi } from '../../hooks/searchApi'
 import { filmDefaultImage } from '../../mocks/images'
 import { fromNameToIndex, formatDate } from '../../utils/funcs'
 import { namesArray } from '../../utils/selectedArray'
+import { FiltersContext } from '../../context/filters'
 
-const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
+const AddItemModal = ({ name, setOpenModal, data, setData }) => {
   const [searchTitle, setSearchTitle] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [selectValue, setSelectValue] = useState(name)
@@ -12,6 +13,7 @@ const AddItemModal = ({ name, setOpenModal, selected, data, setData }) => {
   const prevSearchTitle = useRef('')
   const [loader, setLoader] = useState(false)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
+  const { selected } = useContext(FiltersContext)
 
   const handleSearchChange = (e) => {
     setSearchTitle(e.target.value)

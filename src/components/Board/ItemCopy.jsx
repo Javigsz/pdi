@@ -3,9 +3,12 @@ import { getItemUrl } from '../../utils/funcs'
 import { selectedArray } from '../../utils/selectedArray'
 import { TbEyeCheck } from 'react-icons/tb'
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa'
+import { useContext } from 'react'
+import { FiltersContext } from '../../context/filters'
 
-const ItemCopy = ({ item, data, setData, selected }) => {
+const ItemCopy = ({ item, data, setData }) => {
 //   const [partValue, setPartValue] = useState(item.part)
+  const { selected } = useContext(FiltersContext)
 
   const handleInputChangeSeason = (e) => {
     const newData = structuredClone(data)
