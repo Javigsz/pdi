@@ -13,7 +13,7 @@ function App () {
 
   const ProtectedRoute = ({ component: Component, ...rest }) => {
     if (!isLoggedIn) {
-      return <Redirect to='/login' />
+      return <Redirect to='/' />
     }
     return <Component {...rest} />
   }
