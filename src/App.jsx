@@ -19,7 +19,7 @@ function App () {
         <header className='text-white font-roboto-slab'>
           <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </header>
-        <main className='flex text-white font-roboto-slab justify-center w-min-screen'>
+        <main className='flex text-white font-roboto-slab justify-center'>
           <Switch>
             <Route path='/contact'> <Contact /> </Route>
             <Route path='/help'> <Help /> </Route>

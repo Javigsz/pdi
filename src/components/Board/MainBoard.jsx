@@ -12,8 +12,8 @@ const MainBoard = ({ data, setData }) => {
   return (
     <>
       <SideMenu />
-      <div id='main-board' className='flex flex-col bg-[#16142f] w-full h-full overflow-auto'>
-        <div id='lists' className='flex wrap justify-start'>
+      <div id='main-board' className=' bg-[#16142f] h-full w-full'>
+        <div id='lists' className='flex wrap justify-start border-t-4 border-[#f25f4c] min-w-fit'>
           {/* Esto se puede cambiar por un bucle cuando tenga el estado */}
           <BoardList name='Películas' />
           <BoardList name='Series' />
@@ -21,7 +21,7 @@ const MainBoard = ({ data, setData }) => {
           <BoardList name='Animación' />
           <BoardList name='Libros' />
         </div>
-        <div className='border-t-4 border-[#f25f4c] bg-[#16142f] px-20 h-full'>
+        <div className='border-t-4 border-[#f25f4c] bg-[#16142f] px-20 h-full min-w-fit'>
           <input
             type='text'
             placeholder='Buscar'
@@ -29,7 +29,7 @@ const MainBoard = ({ data, setData }) => {
             onChange={e => setSearchText(e.target.value)}
             className={`z-40 mt-4 ml-8 text-black ${searchText ? 'bg-[#f25f4c] text-white' : ''} rounded-md`}
           />
-          <div id='columns' className='flex justify-between min-w-80'>
+          <div id='columns' className='flex justify-between'>
             <Column name={namesArray[selected][0]} icon={<FaRegEyeSlash color='#f25f4c' size={20} />} data={data} setData={setData} />
             <Column name={namesArray[selected][1]} icon={<FaEye color='#f25f4c' size={20} />} data={data} setData={setData} />
             <Column name={namesArray[selected][2]} icon={<TbEyeCheck color='#f25f4c' size={20} />} data={data} setData={setData} />

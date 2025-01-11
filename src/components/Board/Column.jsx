@@ -21,7 +21,7 @@ const Column = ({ icon, name, data, setData }) => {
       <div className='w-full px-2'>
         <div className='relative flex justify-evenly items-center my-8'>
           <div>{icon}</div>
-          <h1 className='text-2xl text-center font-bold'>{name}</h1>
+          <h1 className='sm:text-2xl text-xl text-center font-bold'>{name}</h1>
           <div className='relative'>
             {data[selected].length === 0 && searchText === '' && <div className='absolute top-10 right-[5px]'><FaLongArrowAltUp size={30} color='#f25f4c' /></div>}
             <button onClick={() => setOpenModal(true)} className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '><IoAddCircle /></button>

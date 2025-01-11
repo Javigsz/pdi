@@ -4,7 +4,7 @@
 
 @import 'tailwindcss/utilities';
 
-:root {
+html {
     background-color: #16142f;
-    height: 100vh;
+    min-width: fit-content;
 }
