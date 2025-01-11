@@ -13,7 +13,7 @@ const SideMenu = () => {
   }
   return (
     <>
-      <div id='menu' className={`bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'w-[200px]' : 'w-[60px]'} h-svh border-r-4 border-white rounded-md`}>
+      <div id='menu' className={`bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 min-h-svh border-white rounded-md`}>
         <div>
           <button
             className={`h-10 w-12 bg-[#0f0e17] text-white p-2 rounded-md flex justify-center items ${openMenu ? 'border-2' : ''} `}
@@ -33,11 +33,11 @@ const SideMenu = () => {
                 <option value='added'>Fecha de añadido</option>
               </select>
               <div className='w-3/4 mx-auto'>
-                <div>
+                <div className='flex'>
                   <input type='radio' id='asc' name='order' value='asc' checked={order.direction === 'asc'} onChange={(e) => setOrder({ type: order.type, direction: e.target.value })} />
                   <label htmlFor='asc'> Ascendente</label>
                 </div>
-                <div className='my-3'>
+                <div className='flex my-3'>
                   <input type='radio' id='desc' name='order' value='desc' checked={order.direction === 'desc'} onChange={(e) => setOrder({ type: order.type, direction: e.target.value })} />
                   <label htmlFor='desc'> Descendente</label>
                 </div>

@@ -36,13 +36,13 @@ const ItemCopy = ({ item, data, setData }) => {
   return (
     <>
       <div
-        id='item' className='relative group w-[130px] h-[190px] flex items-center m-2 bg-black rounded-md
+        id='item' className='relative group h-[190px] w-32 flex items-center m-2 bg-black rounded-md
         hover:border-2 hover:w-[320px] hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
         transition-all duration-300 ease-in-out'
       >
         <div className='flex items-center h-full w-full flex-col jsutify-center group-hover:flex-row'>
           <div id='image' className='h-full w-full group-hover:w-[40%] group-hover:h-full'>
-            <img src={item.image} className='rounded-t-md w-full h-full group-hover:rounded-md' alt='' />
+            <img src={item.image} className='rounded-md w-full h-full group-hover:rounded-md' alt='' />
           </div>
           <div id='title' className='overflow-hidden hidden px-4 group-hover:flex group-hover:max-w-[60%] '>
             <p className='text-xs w-full break-words opacity-80 text-center group-hover:opacity-100 group-hover:font-bold group-hover:text-base group-hover:text-[#f25f4c] group'>{item.name}</p>

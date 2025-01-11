@@ -18,7 +18,7 @@ const Column = ({ icon, name, data, setData }) => {
 
   return (
     <>
-      <div className='w-full h-auto px-6 border-r-2'>
+      <div className='w-full px-2'>
         <div className='relative flex justify-evenly items-center my-8'>
           <div>{icon}</div>
           <h1 className='text-2xl text-center font-bold'>{name}</h1>
@@ -27,7 +27,7 @@ const Column = ({ icon, name, data, setData }) => {
             <button onClick={() => setOpenModal(true)} className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '><IoAddCircle /></button>
           </div>
         </div>
-        <div className='grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] gap-2 place-items-center'>
+        <div className='grid grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item, index) => (
             (name === namesArray[selected][0] && item.state === 0 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
