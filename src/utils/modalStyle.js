@@ -10,7 +10,7 @@ export const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     width: '500px',
-    heigth: '900px',
+    maxHeight: '50svh',
     backgroundColor: '#0f0e17'
   }
 }

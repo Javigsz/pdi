@@ -13,7 +13,7 @@ const SideMenu = () => {
   }
   return (
     <>
-      <div id='menu' className={`bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 min-h-svh border-white rounded-md`}>
+      <div id='menu' className={`min-h-screen bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 border-white rounded-md`}>
         <div>
           <button
             className={`h-10 w-12 bg-[#0f0e17] text-white p-2 rounded-md flex justify-center items ${openMenu ? 'border-2' : ''} `}
