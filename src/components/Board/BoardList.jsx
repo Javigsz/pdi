@@ -8,7 +8,10 @@ const BoardList = ({ name }) => {
   }
   return (
     <>
-      <div className={` ${selected === name ? 'bg-[#f25f4c]' : 'bg-[#16142f]'} w-full rounded-t p-2 cursor-pointer`} onClick={() => handleClick()}>
+      <div
+        className={` ${selected === name ? 'bg-[#f25f4c]' : 'bg-[#16142f]'} w-full rounded-t p-2 cursor-pointer`}
+        onClick={handleClick}
+      >
         <p className='sm:text-xl text-lg text-center'>{name}</p>
       </div>
     </>

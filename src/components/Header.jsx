@@ -15,17 +15,34 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
           {isLoggedIn && (
             <p className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'>Perfil: Invitado</p>
           )}
-          <button disabled={!isLoggedIn} onClick={() => setIsLoggedIn(false)} className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'>
+          <button
+            disabled={!isLoggedIn}
+            onClick={() => setIsLoggedIn(false)}
+            className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'
+          >
             {isLoggedIn ? 'Cerrar Sesion' : 'Iniciar Sesion'}
           </button>
         </div>
-        <div className='flex flex-col items-center cursor-pointer hover:text-[#f25f4c]' onClick={() => setLocation('/')}>
+        <div
+          className='flex flex-col items-center cursor-pointer hover:text-[#f25f4c]'
+          onClick={() => setLocation('/')}
+        >
           <h1 className='text-4xl'>PDI</h1>
           <h1>Por dónde iba?</h1>
         </div>
         <div className='flex flex-col items-start'>
-          <button className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]' onClick={() => handleClickContact()}>Contacto</button>
-          <button className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]' onClick={() => handleClickHelp()}>Ayuda</button>
+          <button
+            className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'
+            onClick={handleClickContact}
+          >
+            Contacto
+          </button>
+          <button
+            className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'
+            onClick={handleClickHelp}
+          >
+            Ayuda
+          </button>
         </div>
       </div>
     </>

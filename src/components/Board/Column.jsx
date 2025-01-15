@@ -23,16 +23,27 @@ const Column = ({ icon, name, data, setData }) => {
           <div>{icon}</div>
           <h1 className='sm:text-2xl text-xl text-center font-bold'>{name}</h1>
           <div className='relative'>
-            {data[selected].length === 0 && searchText === '' && <div className='absolute top-10 right-[5px]'><FaLongArrowAltUp size={30} color='#f25f4c' /></div>}
-            <button onClick={() => setOpenModal(true)} className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '><IoAddCircle /></button>
+            {data[selected].length === 0 && searchText === '' &&
+              <div className='absolute top-10 right-[5px]'>
+                <FaLongArrowAltUp size={30} color='#f25f4c' />
+              </div>}
+            <button
+              onClick={() => setOpenModal(true)}
+              className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '
+            >
+              <IoAddCircle />
+            </button>
           </div>
         </div>
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item, index) => (
-            (name === namesArray[selected][0] && item.state === 0 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
-            (name === namesArray[selected][1] && item.state === 1 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />) ||
-            (name === namesArray[selected][2] && item.state === 2 && <ItemCopy key={index} item={item} data={data} setData={setData} selected={selected} />)
+            (name === namesArray[selected][0] && item.state === 0 &&
+              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />) ||
+            (name === namesArray[selected][1] && item.state === 1 &&
+              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />) ||
+            (name === namesArray[selected][2] && item.state === 2 &&
+              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />)
           ))}
         </div>
         {data[selected].length === 0 && searchText === '' &&

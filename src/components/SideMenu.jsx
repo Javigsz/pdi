@@ -8,12 +8,19 @@ const SideMenu = () => {
   const { order, setOrder } = useContext(FiltersContext)
 
   const handleOnChangeSelect = (e) => {
-    const oldDirection = order.direction
-    setOrder({ type: e.target.value, direction: oldDirection })
+    const newValue = e.target.value
+    if (newValue !== order.type) {
+      const oldDirection = order.direction
+      setOrder({ type: newValue, direction: oldDirection })
+    }
   }
+
   return (
     <>
-      <div id='menu' className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 border-white rounded-md`}>
+      <div
+        id='menu'
+        className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 border-white rounded-md`}
+      >
         <div>
           <button
             className={`h-10 w-12 bg-[#0f0e17] text-white p-2 rounded-md flex justify-center items ${openMenu ? 'border-2' : ''} `}
@@ -28,17 +35,36 @@ const SideMenu = () => {
             <h1 className='text-white text-center font-bold my-8'>Filtros PDI</h1>
             <div className='flex flex-col justify-center text-sm'>
               <p className='text-white text-center'>Orden</p>
-              <select id='sort-type' defaultValue={order.type} className='text-black w-full mx-auto my-3 rounded-md' onChange={(e) => handleOnChangeSelect(e)}>
+              <select
+                id='sort-type'
+                value={order.type}
+                className='text-black w-full mx-auto my-3 rounded-md'
+                onChange={(e) => handleOnChangeSelect(e)}
+              >
                 <option value='name'>Nombre</option>
                 <option value='added'>Fecha de añadido</option>
               </select>
               <div className='w-3/4 mx-auto'>
                 <div className='flex'>
-                  <input type='radio' id='asc' name='order' value='asc' checked={order.direction === 'asc'} onChange={(e) => setOrder({ type: order.type, direction: e.target.value })} />
+                  <input
+                    type='radio'
+                    id='asc'
+                    name='order'
+                    value='asc'
+                    checked={order.direction === 'asc'}
+                    onChange={(e) => setOrder({ type: order.type, direction: e.target.value })}
+                  />
                   <label htmlFor='asc'> Ascendente</label>
                 </div>
                 <div className='flex my-3'>
-                  <input type='radio' id='desc' name='order' value='desc' checked={order.direction === 'desc'} onChange={(e) => setOrder({ type: order.type, direction: e.target.value })} />
+                  <input
+                    type='radio'
+                    id='desc'
+                    name='order'
+                    value='desc'
+                    checked={order.direction === 'desc'}
+                    onChange={(e) => setOrder({ type: order.type, direction: e.target.value })}
+                  />
                   <label htmlFor='desc'> Descendente</label>
                 </div>
               </div>

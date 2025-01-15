@@ -113,7 +113,9 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
           />
           {/* IMPORTANTE - Hay que arreglar el select para que tenga por defecto la columna correcta */}
           <div className='absolute top-0 left-[200px]'>
-            {loader && <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='40' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='100' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='160' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0' /></circle></svg>}
+            {loader &&
+              <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='40' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='100' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='160' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0' /></circle>
+              </svg>}
           </div>
           <select
             name='state' id='state'
@@ -128,16 +130,35 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
         </div>
         <div className={`w-full bg-black my-4 max-h-[300px] ${loader && 'opacity-50'} overflow-y-auto border-x-2`}>
           {searchResult && searchResult.map((result) => (
-            <div key={result.id} onClick={() => handleSelectItem(result)} className={`inline-flex items-center w-full h-20 ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}>
+            <div
+              key={result.id}
+              onClick={() => handleSelectItem(result)}
+              className={`inline-flex items-center w-full h-20 
+            ${selectedItem.id === result.id ? 'bg-[#f25f4c]' : 'bg-[#0f0e17]'} hover:bg-[#f25f4c] p-2 rounded-sm cursor-pointer`}
+            >
               <img src={`${result.image ? result.image : filmDefaultImage}`} className='w-14 h-full mr-1' alt={result.title} />
               <h2 className='opacity-80 h-20 overflow-hidden flex items-center'>{result.title}</h2>
             </div>
           ))}
           {searchResult && searchResult.length > 0 && (
             <div className='absolute bottom-[65px] right-[200px]'>
-              {page > 1 && <button disabled={loader} onClick={() => handleClickPage(-1)} className={`mr-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}>&#60;</button>}
+              {page > 1 &&
+                <button
+                  disabled={loader}
+                  onClick={() => handleClickPage(-1)}
+                  className={`mr-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}
+                >
+                  &#60;
+                </button>}
               <span>Pág. {page}</span>
-              {searchResult.length >= 20 && <button disabled={loader} onClick={() => handleClickPage(1)} className={`ml-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}>&#62;</button>}
+              {searchResult.length >= 20 &&
+                <button
+                  disabled={loader}
+                  onClick={() => handleClickPage(1)}
+                  className={`ml-2 ${loader ? 'bg-[#0f0e17]' : 'bg-[#f25f4c]'} p-1 rounded-sm`}
+                >
+                  &#62;
+                </button>}
             </div>
           )}
           {!searchResult && (

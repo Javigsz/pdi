@@ -35,10 +35,24 @@ const Item = ({ item, data, setData, selected }) => {
         </div>
         {item.state === 1 && (
           <div id='buttons' className='opacity-80 absolute right-1 top-1/2 transform -translate-y-1/2 group-hover:top-[20%]'>
-            <input type='number' min={0} max={4999} value={partValue} onChange={e => handleInputChange(e)} className='text-center bg-gray-700 border-[1px] font-bold w-10 rounded-md' />
+            <input
+              type='number'
+              min={0}
+              max={4999}
+              value={partValue}
+              onChange={e => handleInputChange(e)}
+              className='text-center bg-gray-700 border-[1px] font-bold w-10 rounded-md'
+            />
           </div>
         )}
-        <a href={getItemUrl(item, selected)} target='_blank' rel='noreferrer' className='group-hover:opacity-80 opacity-0 absolute right-1 top-20 cursor-pointer border-2 text-xs px-2 py-1 rounded-md'>Mas info</a>
+        <a
+          href={getItemUrl(item, selected)}
+          target='_blank'
+          rel='noreferrer'
+          className='group-hover:opacity-80 opacity-0 absolute right-1 top-20 cursor-pointer border-2 text-xs px-2 py-1 rounded-md'
+        >
+          Mas info
+        </a>
         <button
           className='absolute z-20 hidden group-hover:block right-0 top-0'
           onClick={() => { handleDeleteItem() }}
