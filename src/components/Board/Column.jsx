@@ -37,13 +37,13 @@ const Column = ({ icon, name, data, setData }) => {
         </div>
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
-          {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item, index) => (
+          {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
             (name === namesArray[selected][0] && item.state === 0 &&
-              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />) ||
             (name === namesArray[selected][1] && item.state === 1 &&
-              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />) ||
             (name === namesArray[selected][2] && item.state === 2 &&
-              <ItemCopy key={`${selected}-${index}`} item={item} data={data} setData={setData} />)
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />)
           ))}
         </div>
         {data[selected].length === 0 && searchText === '' &&

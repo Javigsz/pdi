@@ -40,8 +40,9 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
         added: formattedDate,
         state: fromNameToIndex(selectValue, selected)
       }
-      console.log(selectValue)
-      setData({ ...data, [selected]: [...data[selected], itemToAdd] })
+      if (!data[selected].find(item => item.apiId === itemToAdd.apiId)) {
+        setData({ ...data, [selected]: [...data[selected], itemToAdd] })
+      } else window.alert('Item already exists')
       setOpenModal(false)
     }
   }
