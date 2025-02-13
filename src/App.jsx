@@ -5,19 +5,20 @@ import Login from './components/Login'
 import Help from './components/Help'
 import Contact from './components/Contact'
 import { data } from './mocks/data'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Route, Switch } from 'wouter'
 import { FiltersProvider } from './context/filters.jsx'
+import { AuthContext } from './context/authContext.jsx'
 
 function App () {
   const [tablesData, setTablesData] = useState(data)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn } = useContext(AuthContext)
 
   return (
     <>
       <FiltersProvider>
         <header className='text-white font-roboto-slab'>
-          <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <Header />
         </header>
         <main className='flex text-white font-roboto-slab justify-center'>
           <Switch>
@@ -26,7 +27,7 @@ function App () {
             <Route path='/'>
               {() =>
                 !isLoggedIn
-                  ? <Login setIsLoggedIn={setIsLoggedIn} />
+                  ? <Login />
                   : <MainBoard data={tablesData} setData={setTablesData} />}
             </Route>
             <Route> <h1>404 not found</h1> </Route>
