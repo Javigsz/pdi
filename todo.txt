@@ -11,3 +11,5 @@
 [☑️] Warning al cambiar season/cap
 
 [☑️] Arreglar añadir 2 items iguales
+
+[ ] Algo pasa al ordenar alfabeticamente

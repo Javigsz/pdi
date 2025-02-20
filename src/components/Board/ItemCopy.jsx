@@ -48,7 +48,7 @@ const ItemCopy = ({ item, data, setData }) => {
   return (
     <>
       <div
-        id='item' className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group h-[100px] sm:h-[190px] sm:w-32 w-24 flex items-center m-2 bg-black rounded-md
+        id='item' className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group h-[190px] w-32 flex items-center m-2 bg-black rounded-md
         hover:border-2 hover:w-[280px] sm:hover:w-[320px] hover:h-[190px] hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
         transition-all duration-200 ease-in-out`}
       >

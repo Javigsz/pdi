@@ -29,7 +29,7 @@ const MainBoard = () => {
             onChange={e => setSearchText(e.target.value)}
             className={`z-40 mt-4 ml-8 text-black ${searchText ? 'bg-[#f25f4c] text-white' : ''} rounded-md`}
           />
-          <div id='columns' className='flex justify-between'>
+          <div id='columns' className='flex flex-wrap md:flex-nowrap justify-between'>
             <Column
               name={namesArray[selected][0]}
               icon={<FaRegEyeSlash color='#f25f4c' size={20} />}

@@ -37,7 +37,7 @@ const Column = ({ icon, name }) => {
             </button>
           </div>
         </div>
-        <div className='grid grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] gap-2 place-items-center w-full'>
+        <div className='grid md:grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] grid-cols-1 gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {orderResults(tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
             (name === namesArray[selected][0] && item.state === 0 &&
