@@ -38,6 +38,7 @@ const Login = () => {
     setPassword('')
     setEmail('')
     setError(null)
+    setSuccessMessage(null)
   }
 
   const handleClickGuest = () => {

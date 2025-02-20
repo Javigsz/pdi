@@ -9,12 +9,14 @@ import { namesArray } from '../../utils/selectedArray'
 import { FiltersContext } from '../../context/filters'
 import { orderResults } from '../../utils/funcs'
 import { customStyles } from '../../utils/modalStyle'
+import { DataContext } from '../../context/dataContext'
 
 Modal.setAppElement(document.getElementById('root'))
 
-const Column = ({ icon, name, data, setData }) => {
+const Column = ({ icon, name }) => {
   const [openModal, setOpenModal] = useState(false)
   const { searchText, order, selected } = useContext(FiltersContext)
+  const { tablesData, setTablesData, loading } = useContext(DataContext)
 
   return (
     <>
@@ -23,7 +25,7 @@ const Column = ({ icon, name, data, setData }) => {
           <div>{icon}</div>
           <h1 className='sm:text-2xl text-xl text-center font-bold'>{name}</h1>
           <div className='relative'>
-            {data[selected].length === 0 && searchText === '' &&
+            {tablesData[selected].length === 0 && searchText === '' && !loading &&
               <div className='absolute top-10 right-[5px]'>
                 <FaLongArrowAltUp size={30} color='#f25f4c' />
               </div>}
@@ -37,20 +39,20 @@ const Column = ({ icon, name, data, setData }) => {
         </div>
         <div className='grid grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
-          {orderResults(data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
+          {orderResults(tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
             (name === namesArray[selected][0] && item.state === 0 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />) ||
             (name === namesArray[selected][1] && item.state === 1 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />) ||
             (name === namesArray[selected][2] && item.state === 2 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={data} setData={setData} />)
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />)
           ))}
         </div>
-        {data[selected].length === 0 && searchText === '' &&
+        {tablesData[selected].length === 0 && searchText === '' && !loading &&
           <div className='relative'>
             <p className='text-center text-[#f25f4c]'>Empieza añadiendo {selected}!</p>
           </div>}
-        {data[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())).length === 0 && searchText !== '' &&
+        {tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())).length === 0 && searchText !== '' &&
           <div className='relative'>
             <p className='text-center text-[#f25f4c]'>No se encontraron resultados</p>
           </div>}
@@ -61,7 +63,7 @@ const Column = ({ icon, name, data, setData }) => {
             style={customStyles}
             onRequestClose={() => setOpenModal(false)}
           >
-            <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={data} setData={setData} />
+            <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={tablesData} setData={setTablesData} />
           </Modal>}
       </div>
     </>

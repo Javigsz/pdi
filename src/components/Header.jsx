@@ -17,7 +17,9 @@ const Header = () => {
   }
 
   const handleLogout = async () => {
-    await logout()
+    if (loggedUsername !== 'Invitado') {
+      await logout()
+    }
     setIsLoggedIn(false)
     setLoggedUsername('')
   }

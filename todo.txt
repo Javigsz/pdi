@@ -1,0 +1,13 @@
+[☑️] Seguridad porque un usuario puede cambiar la tabla media de otro
+
+[☑️] Delay al recargar la pagina que sale el login y cosas
+
+[☑️] Arreglar para que obtener media sea GET y no POST
+
+[☑️] No hacer Fetch al deslogear como invitado
+
+[☑️] Bloquear el nombre de usuario Invitado
+
+[☑️] Warning al cambiar season/cap
+
+[☑️] Arreglar añadir 2 items iguales

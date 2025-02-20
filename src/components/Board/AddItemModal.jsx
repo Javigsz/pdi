@@ -4,6 +4,7 @@ import { filmDefaultImage } from '../../mocks/images'
 import { fromNameToIndex, formatDate } from '../../utils/funcs'
 import { namesArray } from '../../utils/selectedArray'
 import { FiltersContext } from '../../context/filters'
+import useUpdateApi from '../../hooks/useUpdateApi'
 
 const AddItemModal = ({ name, setOpenModal, data, setData }) => {
   const [searchTitle, setSearchTitle] = useState('')
@@ -14,7 +15,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
   const [loader, setLoader] = useState(false)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
   const { selected } = useContext(FiltersContext)
-
+  const { addItem } = useUpdateApi()
   const handleSearchChange = (e) => {
     setSearchTitle(e.target.value)
   }
@@ -24,25 +25,24 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
     else setSelectedItem(item)
   }
 
-  const handleAddItem = () => {
+  const handleAddItem = async () => {
     if (selectedItem.id !== null) {
       const today = new Date()
       const formattedDate = formatDate(today)
 
       const itemToAdd = {
-        id: crypto.randomUUID(),
-        apiId: selectedItem.id,
+        type: selected,
+        apiId: String(selectedItem.id),
         name: selectedItem.title,
         desc: selectedItem.desc,
         image: selectedItem.image,
-        season: 1,
-        part: 1,
         added: formattedDate,
+        season: 0,
+        part: 0,
         state: fromNameToIndex(selectValue, selected)
       }
-      if (!data[selected].find(item => item.apiId === itemToAdd.apiId)) {
-        setData({ ...data, [selected]: [...data[selected], itemToAdd] })
-      } else window.alert('Item already exists')
+
+      addItem(itemToAdd, selected, data, setData)
       setOpenModal(false)
     }
   }

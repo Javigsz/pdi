@@ -6,11 +6,13 @@ import { FaEye, FaRegEyeSlash } from 'react-icons/fa'
 import { useContext, useEffect, useState } from 'react'
 import { FiltersContext } from '../../context/filters'
 import ImageLoader from './ImageLoader'
+import useUpdateApi from '../../hooks/useUpdateApi'
 
 const ItemCopy = ({ item, data, setData }) => {
 //   const [partValue, setPartValue] = useState(item.part)
   const { selected } = useContext(FiltersContext)
   const [isReady, setIsReady] = useState(false)
+  const { updateItem, deleteItem } = useUpdateApi()
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,27 +21,28 @@ const ItemCopy = ({ item, data, setData }) => {
   }, [])
 
   const handleInputChangeSeason = (e) => {
-    const newData = structuredClone(data)
-    newData[selected].find(i => i.id === item.id).season = e.target.value
-    setData(newData)
+    const newItem = structuredClone(item)
+    newItem.season = e.target.value
+    updateItem(item.apiId, newItem, selected, data, setData)
   }
 
   const handleInputChangePart = (e) => {
-    const newData = structuredClone(data)
-    newData[selected].find(i => i.id === item.id).part = e.target.value
-    setData(newData)
+    const newItem = structuredClone(item)
+    newItem.part = e.target.value
+    updateItem(item.apiId, newItem, selected, data, setData)
   }
 
   const handleClickChange = (newState) => {
-    const newData = structuredClone(data)
-    newData[selected].find(i => i.id === item.id).state = newState
-    setData(newData)
+    const newItem = structuredClone(item)
+    newItem.state = newState
+    updateItem(item.apiId, newItem, selected, data, setData)
   }
 
   const handleDeleteItem = () => {
     const newData = structuredClone(data)
-    newData[selected] = newData[selected].filter(i => i.id !== item.id)
+    newData[selected] = newData[selected].filter(i => i.apiId !== item.apiId)
     setData(newData)
+    deleteItem(item.apiId, selected, data, setData)
   }
 
   return (

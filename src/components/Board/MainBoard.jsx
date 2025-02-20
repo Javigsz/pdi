@@ -7,7 +7,7 @@ import { FaEye, FaRegEyeSlash } from 'react-icons/fa'
 import { namesArray } from '../../utils/selectedArray'
 import { FiltersContext } from '../../context/filters'
 
-const MainBoard = ({ data, setData }) => {
+const MainBoard = () => {
   const { searchText, setSearchText, selected } = useContext(FiltersContext)
   return (
     <>
@@ -33,20 +33,14 @@ const MainBoard = ({ data, setData }) => {
             <Column
               name={namesArray[selected][0]}
               icon={<FaRegEyeSlash color='#f25f4c' size={20} />}
-              data={data}
-              setData={setData}
             />
             <Column
               name={namesArray[selected][1]}
               icon={<FaEye color='#f25f4c' size={20} />}
-              data={data}
-              setData={setData}
             />
             <Column
               name={namesArray[selected][2]}
               icon={<TbEyeCheck color='#f25f4c' size={20} />}
-              data={data}
-              setData={setData}
             />
           </div>
         </div>

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const backendURL = import.meta.env.VITE_BACKEND_URL
+
 const useAuth = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -8,7 +10,7 @@ const useAuth = () => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${backendURL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -33,13 +35,13 @@ const useAuth = () => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(`${backendURL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ username, password, email })
+        body: JSON.stringify({ username, email, password })
       })
       const data = await response.json()
       if (!response.ok) {
@@ -58,7 +60,7 @@ const useAuth = () => {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch('http://localhost:5000/api/auth/logout', {
+      const response = await fetch(`${backendURL}/api/auth/logout`, {
         method: 'POST',
         credentials: 'include' // Include cookies in the request
       })
