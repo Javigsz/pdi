@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 
-const backendURL = import.meta.env.VITE_BACKEND_URL
+// const backendURL = import.meta.env.VITE_BACKEND_URL
 
 export const AuthContext = createContext()
 
@@ -15,7 +15,8 @@ export function AuthProvider ({ children }) {
 
   const checkSession = async () => {
     try {
-      const response = await fetch(`${backendURL}/api/protected/endpoint`, {
+    //   const response = await fetch(`${backendURL}/api/protected/endpoint`, {
+      const response = await fetch('https://pdi-backend.vercel.app/api/protected/endpoint', {
         method: 'GET',
         credentials: 'include'
       })
