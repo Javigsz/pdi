@@ -1,9 +1,9 @@
 export const selectedArray = {
   Películas: ['Hora', 'Minuto'],
-  Series: ['Temporada', 'Episodio'],
+  Series: ['Season', 'Episodio'],
   Libros: ['Capitulo', 'Pagina'],
   Videojuegos: ['Parte', 'Capitulo'],
-  Animación: ['Temporada', 'Episodio']
+  Animación: ['Season', 'Episodio']
 }
 
 export const namesArray = {

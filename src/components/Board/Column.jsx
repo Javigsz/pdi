@@ -8,7 +8,6 @@ import { FaLongArrowAltUp } from 'react-icons/fa'
 import { namesArray } from '../../utils/selectedArray'
 import { FiltersContext } from '../../context/filters'
 import { orderResults } from '../../utils/funcs'
-import { customStyles } from '../../utils/modalStyle'
 import { DataContext } from '../../context/dataContext'
 
 Modal.setAppElement(document.getElementById('root'))
@@ -37,7 +36,7 @@ const Column = ({ icon, name }) => {
             </button>
           </div>
         </div>
-        <div className='grid md:grid-cols-[repeat(auto-fit,_minmax(16vh,_1fr))] grid-cols-1 gap-2 place-items-center w-full'>
+        <div className='grid grid-cols-[repeat(auto-fit,_minmax(8vh,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(12vh,_1fr))] md:gap-2 place-items-center w-full'>
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {orderResults(tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
             (name === namesArray[selected][0] && item.state === 0 &&
@@ -60,7 +59,8 @@ const Column = ({ icon, name }) => {
           <Modal
             key={openModal.toString()}
             isOpen={openModal}
-            style={customStyles}
+            className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-[500px] lg:w-[600px] max-h-[70svh] bg-[#0f0e17] p-4 rounded border-white border-2'
+            overlayClassName='fixed inset-0 bg-black bg-opacity-50'
             onRequestClose={() => setOpenModal(false)}
           >
             <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={tablesData} setData={setTablesData} />

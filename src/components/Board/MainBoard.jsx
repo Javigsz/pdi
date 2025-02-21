@@ -13,7 +13,7 @@ const MainBoard = () => {
     <>
       <SideMenu />
       <div id='main-board' className=' bg-[#16142f] h-full w-full'>
-        <div id='lists' className='flex wrap justify-start border-t-4 border-[#f25f4c] min-w-fit'>
+        <div id='lists' className='flex flex-wrap justify-evenly border-t-4 border-[#f25f4c]'>
           {/* Esto se puede cambiar por un bucle */}
           <BoardList name='Películas' />
           <BoardList name='Series' />
@@ -21,13 +21,13 @@ const MainBoard = () => {
           <BoardList name='Animación' />
           <BoardList name='Libros' />
         </div>
-        <div className='border-t-4 border-[#f25f4c] bg-[#16142f] px-20 h-full min-w-fit'>
+        <div className='border-t-4 border-[#f25f4c] bg-[#16142f] px-6 md:px-20 h-full'>
           <input
             type='text'
             placeholder='Buscar'
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
-            className={`z-40 mt-4 ml-8 text-black ${searchText ? 'bg-[#f25f4c] text-white' : ''} rounded-md`}
+            className={`z-40 mt-4 mx-4 text-black ${searchText ? 'bg-[#f25f4c] text-white' : ''} rounded-md`}
           />
           <div id='columns' className='flex flex-wrap md:flex-nowrap justify-between'>
             <Column

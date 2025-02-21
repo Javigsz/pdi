@@ -9,8 +9,14 @@ export const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '500px',
+    width: '90%', // Default width for small screens
     maxHeight: '70svh',
-    backgroundColor: '#0f0e17'
+    backgroundColor: '#0f0e17',
+    '@media (min-width: 768px)': { // md breakpoint
+      width: '500px'
+    },
+    '@media (min-width: 1024px)': { // lg breakpoint
+      width: '600px'
+    }
   }
 }

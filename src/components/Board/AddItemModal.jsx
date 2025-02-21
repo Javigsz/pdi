@@ -102,7 +102,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
 
   return (
     <>
-      <div className='h-full w-full text-white z-10 font-roboto-slab'>
+      <div className='h-full w-full text-white z-10 font-roboto-slab text-xs md:text-base'>
         <h1>Añadir {selected}</h1>
         <div className='flex justify-between relative'>
           <input
@@ -112,8 +112,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
             value={searchTitle}
             onChange={(e) => handleSearchChange(e)}
           />
-          {/* IMPORTANTE - Hay que arreglar el select para que tenga por defecto la columna correcta */}
-          <div className='absolute top-0 left-[200px]'>
+          <div className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2'>
             {loader &&
               <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='40' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='100' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2' /></circle><circle fill='#F25F4C' stroke='#F25F4C' strokeWidth='15' r='15' cx='160' cy='100'><animate attributeName='opacity' calcMode='spline' dur='2' values='1;0;1;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0' /></circle>
               </svg>}
@@ -142,7 +141,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
             </div>
           ))}
           {searchResult && searchResult.length > 0 && (
-            <div className='absolute bottom-[65px] right-[200px]'>
+            <div className='absolute bottom-[65px] right-1/2 transform translate-x-1/2'>
               {page > 1 &&
                 <button
                   disabled={loader}
