@@ -4,7 +4,7 @@ import { AuthContext } from '../context/authContext'
 const backendURL = import.meta.env.VITE_BACKEND_URL
 
 const useUpdateApi = () => {
-  const { loggedUsername } = useContext(AuthContext)
+  const { loggedUsername, setLoggedUsername, setIsLoggedIn } = useContext(AuthContext)
 
   const updateItem = async (apiId, newItem, selected, data, setData) => {
     const newData = structuredClone(data)
@@ -28,6 +28,11 @@ const useUpdateApi = () => {
       })
       const data = await response.json()
       if (!response.ok) {
+        if (data.message === 'Token invalido o expirado') {
+          window.location.reload()
+          setLoggedUsername('')
+          setIsLoggedIn(false)
+        }
         throw new Error(data.error || 'Updating item failed')
       }
     }
@@ -50,6 +55,11 @@ const useUpdateApi = () => {
         body: JSON.stringify({ apiId, type: selected })
       })
       if (!response.ok) {
+        if (data.message === 'Token invalido o expirado') {
+          window.location.reload()
+          setLoggedUsername('')
+          setIsLoggedIn(false)
+        }
         throw new Error('Failed to delete item from the backend')
       }
       console.log('Item deleted from the backend')
@@ -72,6 +82,11 @@ const useUpdateApi = () => {
             body: JSON.stringify(itemToAdd)
           })
           if (!response.ok) {
+            if (data.message === 'Token invalido o expirado') {
+              window.location.reload()
+              setLoggedUsername('')
+              setIsLoggedIn(false)
+            }
             throw new Error('Failed to add item to the backend')
           }
           const result = await response.json()

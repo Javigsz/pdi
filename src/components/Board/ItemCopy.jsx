@@ -14,6 +14,8 @@ const ItemCopy = ({ item, data, setData }) => {
   const [isReady, setIsReady] = useState(false)
   const { updateItem, deleteItem } = useUpdateApi()
 
+  console.log(selected)
+
   useEffect(() => {
     setTimeout(() => {
       setIsReady(true)
@@ -48,8 +50,10 @@ const ItemCopy = ({ item, data, setData }) => {
   return (
     <>
       <div
-        id='item' className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group h-[100px] w-20 md:h-[190px] md:w-32 flex items-center m-2 bg-black rounded-md
-        hover:border-2 md:hover:w-[280px] hover:w-[120px] hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
+        id='item' className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group flex items-center m-2 bg-black rounded-md
+        hover:border-2 hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c]
+        md:hover:w-[280px] hover:w-[120px]
+        ${selected === 'Videojuegos' ? 'w-[100px] h-20 md:h-32 md:w-[140px] md:hover:h-44' : 'h-[100px] w-20 md:h-[190px] md:w-32'}
         transition-all duration-200 ease-in-out`}
       >
         <div className='flex items-center h-full w-full flex-row justify-center'>

@@ -12,4 +12,6 @@
 
 [☑️] Arreglar añadir 2 items iguales
 
-[ ] Algo pasa al ordenar alfabeticamente
+[ ] Falla la API de libros a veces
+
+[ ] Que pasa si intento hacer algo y ya no tengo sesion? 

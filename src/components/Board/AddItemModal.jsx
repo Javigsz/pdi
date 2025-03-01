@@ -12,6 +12,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
   const [selectValue, setSelectValue] = useState(name)
   const [page, setPage] = useState(1)
   const prevSearchTitle = useRef('')
+  const resultsDivRef = useRef(null)
   const [loader, setLoader] = useState(false)
   const [selectedItem, setSelectedItem] = useState({ id: null, title: null, image: null })
   const { selected } = useContext(FiltersContext)
@@ -52,6 +53,9 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
       setPage(page + value)
       setLoader(true)
       setSelectedItem({ id: null, title: null, image: null })
+      if (resultsDivRef.current) {
+        resultsDivRef.current.scrollTop = 0 // Scroll to the top when changing pages
+      }
     }
   }
 
@@ -128,7 +132,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
             <option value={namesArray[selected][2]}>{namesArray[selected][2]}</option>
           </select>
         </div>
-        <div className={`w-full bg-black my-4 max-h-[300px] ${loader && 'opacity-50'} overflow-y-auto border-x-2`}>
+        <div ref={resultsDivRef} className={`w-full bg-black my-4 max-h-[300px] ${loader && 'opacity-50'} overflow-y-auto border-x-2`}>
           {searchResult && searchResult.map((result) => (
             <div
               key={result.id}
