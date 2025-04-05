@@ -62,7 +62,7 @@ const ItemCopy = ({ item, data, setData }) => {
         className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group flex items-center m-2 bg-black rounded-md
         hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c] border-transparent hover:border-2 md:hover:w-[280px] 
         
-        ${selected === 'Videojuegos' ? 'w-[120px] h-[1000px] md:h-32 md:w-52 md:hover:h-48' : 'h-[100px] w-20 md:h-[190px] md:w-32 hover:w-[120px]'}
+        ${selected === 'Videojuegos' ? 'w-[120px] h-[100px] md:h-32 md:w-52 md:hover:h-48' : 'h-[100px] w-20 md:h-[190px] md:w-32 hover:w-[120px]'}
         transition-[width,height] duration-200 ease-in-out`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
