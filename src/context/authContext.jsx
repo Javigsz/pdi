@@ -14,26 +14,27 @@ export function AuthProvider ({ children }) {
   }, [])
 
   const checkSession = async () => {
-    try {
-      const response = await fetch(`${backendURL}/api/protected/endpoint`, {
-        //   const response = await fetch('https://pdi-backend.vercel.app/api/protected/endpoint', {
-        method: 'GET',
-        credentials: 'include'
-      })
+    setTimeout(async () => {
+      try {
+        const response = await fetch(`${backendURL}/api/protected/endpoint`, {
+          method: 'GET',
+          credentials: 'include'
+        })
 
-      if (response.status === 401) {
+        if (response.status === 401) {
+          setIsLoggedIn(false)
+        } else {
+          const data = await response.json()
+          setLoggedUsername(data.username)
+          setIsLoggedIn(true)
+        }
+      } catch (error) {
+        console.error('Error al verificar la sesión:', error)
         setIsLoggedIn(false)
-      } else {
-        const data = await response.json()
-        setLoggedUsername(data.username)
-        setIsLoggedIn(true)
+      } finally {
+        setLoading(false)
       }
-    } catch (error) {
-      console.error('Error al verificar la sesión:', error)
-      setIsLoggedIn(false)
-    } finally {
-      setLoading(false)
-    }
+    }, 1000) // 1 second delay
   }
 
   return (

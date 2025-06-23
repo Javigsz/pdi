@@ -9,6 +9,7 @@ import { Route, Switch } from 'wouter'
 import { FiltersProvider } from './context/filters.jsx'
 import { AuthContext } from './context/authContext.jsx'
 import { DataProvider } from './context/dataContext.jsx'
+import LoaderSkeleton from './components/LoaderSkeleton.jsx'
 
 function App () {
 //   const [tablesData, setTablesData] = useState(data)
@@ -28,7 +29,12 @@ function App () {
               <Route path='/'>
                 {() => {
                   if (loading) {
-                    return // Display a loading spinner or placeholder
+                    return (
+                      <div className='pt-10'>
+                        <LoaderSkeleton />
+                      </div>
+                    )
+                    // Display a loading spinner or placeholder
                   }
                   return !isLoggedIn ? <Login /> : <MainBoard />
                 }}
