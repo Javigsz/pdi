@@ -16,8 +16,8 @@ const ItemCopy = ({ item, data, setData }) => {
   const [showButtons, setShowButtons] = useState(false)
   const { updateItem, deleteItem } = useUpdateApi()
   const { isLoggedIn } = useContext(AuthContext)
-  const { pathname } = useLocation()
-  const modificableItem = isLoggedIn && !pathname
+  const [pathname] = useLocation()
+  const modificableItem = isLoggedIn && pathname.length < 1
 
   useEffect(() => {
     setTimeout(() => {

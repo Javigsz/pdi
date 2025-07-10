@@ -18,7 +18,12 @@ const Column = ({ icon, name, data }) => {
   const [openModal, setOpenModal] = useState(false)
   const { searchText, order, selected } = useContext(FiltersContext)
   const { tablesData, setTablesData, loading } = useContext(DataContext)
-  const dataToShow = data || tablesData
+  let dataToShow
+  if (data) {
+    dataToShow = data
+  } else if (tablesData) {
+    dataToShow = tablesData
+  }
   const { isLoggedIn } = useContext(AuthContext)
   const [pathname] = useLocation()
 

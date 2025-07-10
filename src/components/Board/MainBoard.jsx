@@ -21,10 +21,10 @@ const MainBoard = ({ data }) => {
       <div id='main-board' className=' bg-[#16142f] h-full w-full'>
         {username && (
           <div className='flex items-center justify-center text-white h-10 font-bold'>
-            Estás viendo el PDI de {username}.
+            Estás viendo el PDI de {username} .
             {isLoggedIn &&
               <>
-                <Link href='/'><span className='text-orange-500'> Click aqui </span></Link>
+                <Link href='/'><span className='text-orange-500'> Click aqui &nbsp;</span></Link>
                 <p>para volver al tuyo.</p>
               </>}
           </div>
