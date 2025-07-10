@@ -35,8 +35,7 @@ const Header = () => {
             </p>
           )}
           <button
-            disabled={!isLoggedIn}
-            onClick={handleLogout}
+            onClick={() => isLoggedIn ? handleLogout() : setLocation('/')}
             className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'
           >
             {isLoggedIn ? 'Cerrar Sesion' : 'Iniciar Sesion'}

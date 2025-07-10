@@ -7,12 +7,17 @@ import { useContext, useEffect, useState } from 'react'
 import { FiltersContext } from '../../context/filters'
 import ImageLoader from './ImageLoader'
 import useUpdateApi from '../../hooks/useUpdateApi'
+import { AuthContext } from '../../context/authContext'
+import { useLocation } from 'wouter'
 
 const ItemCopy = ({ item, data, setData }) => {
   const { selected } = useContext(FiltersContext)
   const [isReady, setIsReady] = useState(false)
   const [showButtons, setShowButtons] = useState(false)
   const { updateItem, deleteItem } = useUpdateApi()
+  const { isLoggedIn, loggedUsername } = useContext(AuthContext)
+  const { pathname } = useLocation()
+  const modificableItem = isLoggedIn && pathname.includes(loggedUsername)
 
   useEffect(() => {
     setTimeout(() => {
@@ -92,6 +97,7 @@ const ItemCopy = ({ item, data, setData }) => {
                 {selectedArray[selected][0]}:
                 <input
                   type='number'
+                  disabled={!modificableItem}
                   min={0}
                   max={4999}
                   value={item.season}
@@ -103,6 +109,7 @@ const ItemCopy = ({ item, data, setData }) => {
                 {selectedArray[selected][1]}:
                 <input
                   type='number'
+                  disabled={!modificableItem}
                   min={0}
                   max={4999}
                   value={item.part}
@@ -117,7 +124,7 @@ const ItemCopy = ({ item, data, setData }) => {
           className={`group-hover:flex hidden group-hover:justify-center group-hover:items-center md:absolute md:bottom-3 md:right-2 w-full md:w-auto ${showButtons ? '' : 'pointer-events-none'}`}
         >
           <button
-            disabled={item.state === 0 || !showButtons}
+            disabled={item.state === 0 || !showButtons || !modificableItem}
             onClick={() => handleClickChange(0)}
             className={`${item.state === 0 ? '' : 'hover:bg-[#f25f4c] rounded-sm'}`}
           >
@@ -127,7 +134,7 @@ const ItemCopy = ({ item, data, setData }) => {
             />
           </button>
           <button
-            disabled={item.state === 1 || !showButtons}
+            disabled={item.state === 1 || !showButtons || !modificableItem}
             onClick={() => handleClickChange(1)}
             className={`mx-2 ${item.state === 1 ? '' : 'hover:bg-[#f25f4c] rounded-sm'}`}
           >
@@ -137,7 +144,7 @@ const ItemCopy = ({ item, data, setData }) => {
             />
           </button>
           <button
-            disabled={item.state === 2 || !showButtons}
+            disabled={item.state === 2 || !showButtons || !modificableItem}
             onClick={() => handleClickChange(2)}
             className={`${item.state === 2 ? '' : 'hover:bg-[#f25f4c] rounded-sm'}`}
           >
@@ -156,13 +163,15 @@ const ItemCopy = ({ item, data, setData }) => {
         >
           Mas info
         </a>
-        <button
-          disabled={!showButtons}
-          className={`absolute z-20 hidden group-hover:block right-0 top-0 ${showButtons ? '' : 'pointer-events-none'}`}
-          onClick={handleDeleteItem}
-        >
-          <TiDelete color='red' size={20} />
-        </button>
+        {modificableItem && (
+          <button
+            disabled={!showButtons}
+            className={`absolute z-20 hidden group-hover:block right-0 top-0 ${showButtons ? '' : 'pointer-events-none'}`}
+            onClick={handleDeleteItem}
+          >
+            <TiDelete color='red' size={20} />
+          </button>
+        )}
       </div>
     </>
   )

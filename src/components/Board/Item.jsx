@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { TiDelete } from 'react-icons/ti'
 import { getItemUrl } from '../../utils/funcs'
+import { AuthContext } from '../../context/authContext'
+import { useLocation } from 'wouter'
 
 const Item = ({ item, data, setData, selected }) => {
   const [partValue, setPartValue] = useState(item.part)
+  const [isLoggedIn, loggedUsername] = useContext(AuthContext)
+  const { pathname } = useLocation()
 
   const handleInputChange = (e) => {
     setPartValue(e.target.value)
@@ -53,12 +57,14 @@ const Item = ({ item, data, setData, selected }) => {
         >
           Mas info
         </a>
-        <button
-          className='absolute z-20 hidden group-hover:block right-0 top-0'
-          onClick={() => { handleDeleteItem() }}
-        >
-          <TiDelete color='#f25f4c' size={20} />
-        </button>
+        {isLoggedIn && pathname.includes(loggedUsername) && (
+          <button
+            className='absolute z-20 hidden group-hover:block right-0 top-0'
+            onClick={() => { handleDeleteItem() }}
+          >
+            <TiDelete color='#f25f4c' size={20} />
+          </button>
+        )}
       </div>
     </>
   )

@@ -10,6 +10,7 @@ import { FiltersProvider } from './context/filters.jsx'
 import { AuthContext } from './context/authContext.jsx'
 import { DataProvider } from './context/dataContext.jsx'
 import LoaderSkeleton from './components/LoaderSkeleton.jsx'
+import UserPDI from './components/UserPDI.jsx'
 
 function App () {
 //   const [tablesData, setTablesData] = useState(data)
@@ -26,6 +27,9 @@ function App () {
             <Switch>
               <Route path='/contact'> <Contact /> </Route>
               <Route path='/help'> <Help /> </Route>
+              <Route path='/user/:username'>
+                {params => <UserPDI username={params.username} />}
+              </Route>
               <Route path='/'>
                 {() => {
                   if (loading) {
