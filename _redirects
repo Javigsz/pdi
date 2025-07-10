@@ -1,0 +1,2 @@
+# Redirects for the /user/:username route
+/user/*  /user/:splat  301
