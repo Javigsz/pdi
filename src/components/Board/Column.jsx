@@ -20,7 +20,7 @@ const Column = ({ icon, name, data }) => {
   const { tablesData, setTablesData, loading } = useContext(DataContext)
   const dataToShow = data || tablesData
   const { isLoggedIn } = useContext(AuthContext)
-  const { pathname } = useLocation()
+  const [pathname] = useLocation()
 
   return (
     <>
@@ -33,7 +33,7 @@ const Column = ({ icon, name, data }) => {
               <div className='absolute top-10 right-[5px]'>
                 <FaLongArrowAltUp size={30} color='#f25f4c' />
               </div>}
-            {isLoggedIn && !pathname.includes('user') &&
+            {isLoggedIn && !pathname &&
               <button
                 onClick={() => setOpenModal(true)}
                 className='p-2 text-xl text-[#f25f4c] border-2 border-transparent hover:border-[#f25f4c] rounded-md '
