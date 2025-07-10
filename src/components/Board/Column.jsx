@@ -18,11 +18,8 @@ const Column = ({ icon, name, data }) => {
   const [openModal, setOpenModal] = useState(false)
   const { searchText, order, selected } = useContext(FiltersContext)
   const { tablesData, setTablesData, loading } = useContext(DataContext)
-  let dataToShow
   if (data) {
-    dataToShow = data
-  } else if (tablesData) {
-    dataToShow = tablesData
+    setTablesData(data)
   }
   const { isLoggedIn } = useContext(AuthContext)
   const [pathname] = useLocation()
@@ -34,7 +31,7 @@ const Column = ({ icon, name, data }) => {
           <div>{icon}</div>
           <h1 className='sm:text-2xl text-xl text-center font-bold'>{name}</h1>
           <div className='relative'>
-            {dataToShow[selected].length === 0 && searchText === '' && !loading &&
+            {tablesData[selected].length === 0 && searchText === '' && !loading &&
               <div className='absolute top-10 right-[5px]'>
                 <FaLongArrowAltUp size={30} color='#f25f4c' />
               </div>}
@@ -51,20 +48,20 @@ const Column = ({ icon, name, data }) => {
           ${selected === 'Videojuegos' ? 'md:grid-cols-[repeat(auto-fit,_minmax(20vh,_1fr))] grid-cols-[repeat(auto-fit,_minmax(10vh,_1fr))]' : 'md:grid-cols-[repeat(auto-fit,_minmax(12vh,_1fr))] grid-cols-[repeat(auto-fit,_minmax(8vh,_1fr))]'}`}
         >
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
-          {orderResults(dataToShow[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
+          {orderResults(tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (
             (name === namesArray[selected][0] && item.state === 0 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={dataToShow} setData={setTablesData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />) ||
             (name === namesArray[selected][1] && item.state === 1 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={dataToShow} setData={setTablesData} />) ||
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />) ||
             (name === namesArray[selected][2] && item.state === 2 &&
-              <ItemCopy key={`${selected}-${item.name}`} item={item} data={dataToShow} setData={setTablesData} />)
+              <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />)
           ))}
         </div>
-        {dataToShow[selected].length === 0 && searchText === '' && !loading &&
+        {tablesData[selected].length === 0 && searchText === '' && !loading &&
           <div className='relative'>
             <p className='text-center text-[#f25f4c]'>Empieza añadiendo {selected}!</p>
           </div>}
-        {dataToShow[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())).length === 0 && searchText !== '' &&
+        {tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())).length === 0 && searchText !== '' &&
           <div className='relative'>
             <p className='text-center text-[#f25f4c]'>No se encontraron resultados</p>
           </div>}
@@ -76,7 +73,7 @@ const Column = ({ icon, name, data }) => {
             overlayClassName='fixed inset-0 bg-black bg-opacity-50'
             onRequestClose={() => setOpenModal(false)}
           >
-            <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={dataToShow} setData={setTablesData} />
+            <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={tablesData} setData={setTablesData} />
           </Modal>}
       </div>
     </>
