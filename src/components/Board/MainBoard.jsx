@@ -8,9 +8,11 @@ import { namesArray } from '../../utils/selectedArray'
 import { FiltersContext } from '../../context/filters'
 import { useLocation, Link } from 'wouter'
 import { AuthContext } from '../../context/authContext'
+import { DataContext } from '../../context/dataContext'
 
-const MainBoard = ({ data }) => {
+const MainBoard = () => {
   const { searchText, setSearchText, selected } = useContext(FiltersContext)
+  const { setUsername } = useContext(DataContext)
   const [pathname] = useLocation()
   const { isLoggedIn } = useContext(AuthContext)
   const username = pathname.split('/')[2]
@@ -21,11 +23,17 @@ const MainBoard = ({ data }) => {
       <div id='main-board' className=' bg-[#16142f] h-full w-full'>
         {username && (
           <div className='flex items-center justify-center text-white h-10 font-bold'>
-            Estás viendo el PDI de {username} .
+            Estás viendo el PDI de {username}.&nbsp;
             {isLoggedIn &&
               <>
-                <Link href='/'><span className='text-orange-500'> Click aqui &nbsp;</span></Link>
-                <p>para volver al tuyo.</p>
+                <Link href='/'>
+                  <span
+                    onClick={() => { setUsername('') }}
+                    className='text-orange-500 hover:underline cursor-pointer'
+                  >Click aqui
+                  </span>
+                </Link>
+                <p>&nbsp;para volver al tuyo.</p>
               </>}
           </div>
         )}
@@ -47,17 +55,14 @@ const MainBoard = ({ data }) => {
           />
           <div id='columns' className='flex flex-wrap md:flex-nowrap justify-between'>
             <Column
-              data={data}
               name={namesArray[selected][0]}
               icon={<FaRegEyeSlash color='#f25f4c' size={20} />}
             />
             <Column
-              data={data}
               name={namesArray[selected][1]}
               icon={<FaEye color='#f25f4c' size={20} />}
             />
             <Column
-              data={data}
               name={namesArray[selected][2]}
               icon={<TbEyeCheck color='#f25f4c' size={20} />}
             />

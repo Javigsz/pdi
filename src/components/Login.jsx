@@ -70,16 +70,16 @@ const Login = () => {
           {successMessage && <p className='text-green-500 text-center w-full flex-shrink-0'>{successMessage}</p>}
           <button
             type='submit'
-            className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full'
+            className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-8 w-full hover:shadow-white hover:shadow-sm transition'
           >
             {registing ? 'Registrar' : 'Login'}
           </button>
-          <div className='flex '>
+          <div className='w-full'>
             <button
               type='button'
               disabled={!registing}
               onClick={() => handleChangeRegisting(false)}
-              className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full'
+              className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full hover:shadow-white hover:shadow-sm'
             >
               Iniciar sesión
             </button>
@@ -87,14 +87,14 @@ const Login = () => {
               type='button'
               disabled={registing}
               onClick={() => handleChangeRegisting(true)}
-              className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-4'
+              className='disabled:hidden bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full hover:shadow-white hover:shadow-sm'
             >
               Registro
             </button>
           </div>
           <button
             onClick={handleClickGuest}
-            className='bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full'
+            className='bg-[#f25f4c] text-white p-2 rounded-md mt-4 w-full hover:shadow-white hover:shadow-sm'
           >
             Iniciar como invitado
           </button>

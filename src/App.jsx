@@ -9,12 +9,12 @@ import { Route, Switch } from 'wouter'
 import { FiltersProvider } from './context/filters.jsx'
 import { AuthContext } from './context/authContext.jsx'
 import { DataProvider } from './context/dataContext.jsx'
-import LoaderSkeleton from './components/LoaderSkeleton.jsx'
 import UserPDI from './components/UserPDI.jsx'
+import Loading from './components/Loading.jsx'
 
 function App () {
 //   const [tablesData, setTablesData] = useState(data)
-  const { isLoggedIn, loading } = useContext(AuthContext)
+  const { isLoggedIn } = useContext(AuthContext)
 
   return (
     <>
@@ -23,6 +23,7 @@ function App () {
           <header className='text-white font-roboto-slab'>
             <Header />
           </header>
+          <Loading />
           <main className='flex text-white font-roboto-slab justify-center'>
             <Switch>
               <Route path='/contact'> <Contact /> </Route>
@@ -32,14 +33,14 @@ function App () {
               </Route>
               <Route path='/'>
                 {() => {
-                  if (loading) {
-                    return (
-                      <div className='pt-10'>
-                        <LoaderSkeleton />
-                      </div>
-                    )
-                    // Display a loading spinner or placeholder
-                  }
+                  // if (loading) {
+                  //   return (
+                  //     <div className='pt-10'>
+                  //       <LoaderSkeleton />
+                  //     </div>
+                  //   )
+                  // Display a loading spinner or placeholder
+                  // }
                   return !isLoggedIn ? <Login /> : <MainBoard />
                 }}
               </Route>

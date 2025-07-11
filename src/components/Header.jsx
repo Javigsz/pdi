@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <>
-      <div className='bg-[#0f0e17] h-18 p-4 flex border-b-4 border-[white] justify-between items-start'>
+      <div className='bg-[#0f0e17] h-[100px] p-4 flex border-b-4 border-[white] justify-between items-start'>
         <div>
           {isLoggedIn && (
             <p className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'>

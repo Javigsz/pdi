@@ -14,13 +14,10 @@ import { useLocation } from 'wouter'
 
 Modal.setAppElement(document.getElementById('root'))
 
-const Column = ({ icon, name, data }) => {
+const Column = ({ icon, name }) => {
   const [openModal, setOpenModal] = useState(false)
   const { searchText, order, selected } = useContext(FiltersContext)
   const { tablesData, setTablesData, loading } = useContext(DataContext)
-  if (data) {
-    setTablesData(data)
-  }
   const { isLoggedIn } = useContext(AuthContext)
   const [pathname] = useLocation()
 
@@ -31,7 +28,7 @@ const Column = ({ icon, name, data }) => {
           <div>{icon}</div>
           <h1 className='sm:text-2xl text-xl text-center font-bold'>{name}</h1>
           <div className='relative'>
-            {tablesData[selected].length === 0 && searchText === '' && !loading &&
+            {tablesData[selected].length === 0 && searchText === '' && !loading && !pathname &&
               <div className='absolute top-10 right-[5px]'>
                 <FaLongArrowAltUp size={30} color='#f25f4c' />
               </div>}
@@ -57,7 +54,7 @@ const Column = ({ icon, name, data }) => {
               <ItemCopy key={`${selected}-${item.name}`} item={item} data={tablesData} setData={setTablesData} />)
           ))}
         </div>
-        {tablesData[selected].length === 0 && searchText === '' && !loading &&
+        {tablesData[selected].length === 0 && searchText === '' && !loading && !pathname &&
           <div className='relative'>
             <p className='text-center text-[#f25f4c]'>Empieza añadiendo {selected}!</p>
           </div>}

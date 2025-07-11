@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/authContext'
 
 const backendURL = import.meta.env.VITE_BACKEND_URL
 
 const useAuth = () => {
-  const [loading, setLoading] = useState(false)
+  const { loading, setLoading } = useContext(AuthContext)
   const [error, setError] = useState(null)
 
   const login = async (username, password) => {
