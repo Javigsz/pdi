@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import { AuthContext } from './authContext'
 import { data } from '../mocks/data'
+import { useLocation } from 'wouter'
 
 const emptyData = {
   Películas: [],
@@ -40,10 +41,11 @@ const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   const [error, setError] = useState(null)
+  const [pathname] = useLocation()
 
   useEffect(() => {
     const fetchData = async () => {
-      if (username !== '') {
+      if (username !== '' && pathname.includes('user')) {
         console.log('Fetching data for route user:', username)
         try {
           const response = await fetch(`${backendURL}/api/user/${username}`, {

@@ -1,11 +1,15 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { MdOutlineMenu } from 'react-icons/md'
 import { BsArrowBarLeft } from 'react-icons/bs'
 import { FiltersContext } from '../context/filters'
+import { AuthContext } from '../context/authContext'
 
 const SideMenu = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const { order, setOrder } = useContext(FiltersContext)
+  const { isLoggedIn, loggedUsername } = useContext(AuthContext)
+  const [copiado, setCopiado] = useState(false)
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
 
   const handleOnChangeSelect = (e) => {
     const newValue = e.target.value
@@ -15,11 +19,42 @@ const SideMenu = () => {
     }
   }
 
+  const handleClickOnShare = async () => {
+    try {
+      // Copiar el enlace al portapapeles
+      setCopiado(true) // Cambia el estado si se copió correctamente
+      setTimeout(() => setCopiado(false), 2000)
+      await navigator.clipboard.writeText('https://pordondeiba-pdi.netlify.app/user/' + loggedUsername)
+    } catch (error) {
+      console.error('Error al copiar al portapapeles: ', error)
+    } finally {
+      // Mostrar un mensaje de alerta
+      console.log('Enlace copiado al portapapeles')
+    }
+  }
+
+  const handleCursorMovement = (e) => {
+    setCursorPos({
+      x: e.clientX + 10,
+      y: e.clientY + 10
+    })
+  }
+
+  useEffect(() => {
+    // Escuchar el movimiento del mouse
+    window.addEventListener('mousemove', handleCursorMovement)
+
+    // Limpiar el evento cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('mousemove', handleCursorMovement)
+    }
+  }, [])
+
   return (
     <>
       <div
         id='menu'
-        className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-auto px-6' : ''} border-r-4 border-white rounded-md`}
+        className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-[200px] px-6' : ''} border-r-4 border-white rounded-md`}
       >
         <div>
           <button
@@ -69,9 +104,33 @@ const SideMenu = () => {
                 </div>
               </div>
             </div>
+            {isLoggedIn && (
+              <>
+                <h1 className='text-center font-bold my-8'>Compartir</h1>
+                <div
+                  className='text-[#f25f4c] flex flex-col justify-center text-center text-sm cursor-pointer hover:underline'
+                  onClick={() => handleClickOnShare()}
+                >
+                  Copiar enlace
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
+      {copiado && (
+        <div
+          className='absolute px-3 py-1 bg-[#f25f4c] text-white rounded text-sm'
+          style={{
+            top: `${cursorPos.y}px`,
+            left: `${cursorPos.x}px`,
+            transform: 'translate(10px, -50%)', // Desplazamos el mensaje a la derecha del cursor
+            pointerEvents: 'none' // Evitar que interfiera con otros elementos interactivos
+          }}
+        >
+          ¡Enlace copiado!
+        </div>
+      )}
     </>
   )
 }

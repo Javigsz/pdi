@@ -20,7 +20,7 @@ const MainBoard = () => {
   return (
     <>
       <SideMenu />
-      <div id='main-board' className=' bg-[#16142f] h-full w-full'>
+      <div id='main-board' className=' h-full w-full'>
         {username && (
           <div className='flex items-center justify-center text-white h-10 font-bold'>
             Estás viendo el PDI de {username}.&nbsp;
@@ -45,7 +45,7 @@ const MainBoard = () => {
           <BoardList name='Animación' />
           <BoardList name='Libros' />
         </div>
-        <div className='border-t-4 border-[#f25f4c] bg-[#16142f] px-6 md:px-20 h-full'>
+        <div className='border-t-4 border-[#f25f4c]  px-6 md:px-20 h-full'>
           <input
             type='text'
             placeholder='Buscar'

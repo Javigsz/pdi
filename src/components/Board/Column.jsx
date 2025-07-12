@@ -42,7 +42,7 @@ const Column = ({ icon, name }) => {
           </div>
         </div>
         <div className={`grid grid-cols-[repeat(auto-fit,_minmax(12vh,_1fr))] md:gap-2 place-items-center w-full
-          ${selected === 'Videojuegos' ? 'md:grid-cols-[repeat(auto-fit,_minmax(20vh,_1fr))] grid-cols-[repeat(auto-fit,_minmax(10vh,_1fr))]' : 'md:grid-cols-[repeat(auto-fit,_minmax(12vh,_1fr))] grid-cols-[repeat(auto-fit,_minmax(8vh,_1fr))]'}`}
+          ${selected === 'Videojuegos' ? 'md:grid-cols-[repeat(auto-fit,_minmax(20vh,_1fr))] grid-cols-[repeat(auto-fit,_minmax(10vh,_1fr))]' : 'grid-cols-[repeat(auto-fit,_minmax(8vh,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(12vw,_1fr))] xl:grid-cols-[repeat(auto-fit,_minmax(8.5vw,_1fr))]'}`}
         >
           {/* Se puede eliminar el prop propagation cuando tenga el estado */}
           {orderResults(tablesData[selected].filter(item => item.name.toLowerCase().includes(searchText.toLowerCase())), order.type, order.direction).map((item) => (

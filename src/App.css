@@ -5,6 +5,7 @@
 @import 'tailwindcss/utilities';
 
 html {
-    background-color: #16142f;
+    /* background-color: #16142f; */
+    background: linear-gradient(to right, #16142f, #0f1a4e);
     min-width: fit-content;
 }
