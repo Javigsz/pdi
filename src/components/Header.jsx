@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <>
       <div className='bg-[#0f0e17] h-[100px] p-4 flex border-b-4 border-[white] justify-between items-start'>
-        <div>
+        <div className='w-1/3'>
           {isLoggedIn && (
             <p className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'>
               Perfil: {loggedUsername}
@@ -42,13 +42,13 @@ const Header = () => {
           </button>
         </div>
         <div
-          className='flex flex-col items-center cursor-pointer hover:text-[#f25f4c]'
+          className='flex flex-col items-center cursor-pointer hover:text-[#f25f4c] w-1/3'
           onClick={() => setLocation('/')}
         >
           <h1 className='text-4xl'>PDI</h1>
           <h1>Por dónde iba?</h1>
         </div>
-        <div className='flex flex-col items-start'>
+        <div className='flex flex-col items-end w-1/3'>
           <button
             className='border-[white] text-xs p-[4px] hover:text-[#f25f4c]'
             onClick={handleClickContact}

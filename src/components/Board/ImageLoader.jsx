@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Oval } from 'react-loader-spinner'
+import LazyLoad from 'react-lazyload'
 
 const ImageLoader = ({ src, alt }) => {
   const [loaded, setLoaded] = useState(false)
@@ -14,7 +15,9 @@ const ImageLoader = ({ src, alt }) => {
     <>
       {loaded
         ? (
-          <img src={src} alt={alt} className='rounded-md w-full h-full' />
+          <LazyLoad offset={100} once className='w-full h-full'>
+            <img src={src} alt={alt} className='rounded-md w-full h-full' />
+          </LazyLoad>
           )
         : (
           <div className='flex items-center justify-center h-full w-full'>

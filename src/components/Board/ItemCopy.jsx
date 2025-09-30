@@ -76,7 +76,7 @@ const ItemCopy = ({ item, data, setData }) => {
           <div
             id='image'
             className={`h-full w-full group-hover:hidden md:group-hover:block group-hover:w-full
-          ${selected === 'Videojuegos' ? 'absolute group-hover:opacity-25' : 'md:group-hover:w-[80%]'}`}
+            ${selected === 'Videojuegos' ? 'absolute group-hover:opacity-25' : 'md:group-hover:w-[80%]'}`}
           >
             <ImageLoader src={item.image} alt={item.name} />
           </div>

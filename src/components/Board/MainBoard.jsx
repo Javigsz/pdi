@@ -20,7 +20,7 @@ const MainBoard = () => {
   return (
     <>
       <SideMenu />
-      <div id='main-board' className=' h-full w-full'>
+      <div id='main-board' className='h-full w-full m-8'>
         {username && (
           <div className='flex items-center justify-center text-white h-10 font-bold'>
             Estás viendo el PDI de {username}.&nbsp;
@@ -37,7 +37,7 @@ const MainBoard = () => {
               </>}
           </div>
         )}
-        <div id='lists' className='flex flex-wrap justify-evenly border-t-4 border-[#f25f4c]'>
+        <div id='lists' className='flex flex-wrap justify-evenly border-b-2 border-white'>
           {/* Esto se puede cambiar por un bucle */}
           <BoardList name='Películas' />
           <BoardList name='Series' />
@@ -45,8 +45,9 @@ const MainBoard = () => {
           <BoardList name='Animación' />
           <BoardList name='Libros' />
         </div>
-        <div className='border-t-4 border-[#f25f4c]  px-6 md:px-20 h-full'>
+        <div className='px-6 md:px-20 h-full'>
           <input
+            id='search'
             type='text'
             placeholder='Buscar'
             value={searchText}
@@ -56,15 +57,15 @@ const MainBoard = () => {
           <div id='columns' className='flex flex-wrap md:flex-nowrap justify-between'>
             <Column
               name={namesArray[selected][0]}
-              icon={<FaRegEyeSlash color='#f25f4c' size={20} />}
+              icon={<FaRegEyeSlash color='#ffffff' size={20} />}
             />
             <Column
               name={namesArray[selected][1]}
-              icon={<FaEye color='#f25f4c' size={20} />}
+              icon={<FaEye color='#ffffff' size={20} />}
             />
             <Column
               name={namesArray[selected][2]}
-              icon={<TbEyeCheck color='#f25f4c' size={20} />}
+              icon={<TbEyeCheck color='#ffffff' size={20} />}
             />
           </div>
         </div>

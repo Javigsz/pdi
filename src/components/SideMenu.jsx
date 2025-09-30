@@ -54,7 +54,7 @@ const SideMenu = () => {
     <>
       <div
         id='menu'
-        className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-[200px] px-6' : ''} border-r-4 border-white rounded-md`}
+        className={`min-h-svh bg-[#0f0e17] flex flex-col items-center ${openMenu ? 'min-w-[200px] px-6' : ''} border-r-4 border-white`}
       >
         <div>
           <button
