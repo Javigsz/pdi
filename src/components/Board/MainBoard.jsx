@@ -9,6 +9,7 @@ import { FiltersContext } from '../../context/filters'
 import { useLocation, Link } from 'wouter'
 import { AuthContext } from '../../context/authContext'
 import { DataContext } from '../../context/dataContext'
+import { forceCheck } from 'react-lazyload'
 
 const MainBoard = () => {
   const { searchText, setSearchText, selected } = useContext(FiltersContext)
@@ -51,7 +52,10 @@ const MainBoard = () => {
             type='text'
             placeholder='Buscar'
             value={searchText}
-            onChange={e => setSearchText(e.target.value)}
+            onChange={e => {
+              setSearchText(e.target.value)
+              forceCheck()
+            }}
             className={`z-40 mt-4 mx-4 text-black ${searchText ? 'bg-[#f25f4c] text-white' : ''} rounded-md`}
           />
           <div id='columns' className='flex flex-wrap md:flex-nowrap justify-between'>

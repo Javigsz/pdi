@@ -3,6 +3,7 @@ import { MdOutlineMenu } from 'react-icons/md'
 import { BsArrowBarLeft } from 'react-icons/bs'
 import { FiltersContext } from '../context/filters'
 import { AuthContext } from '../context/authContext'
+import { forceCheck } from 'react-lazyload'
 
 const SideMenu = () => {
   const [openMenu, setOpenMenu] = useState(false)
@@ -74,7 +75,10 @@ const SideMenu = () => {
                 id='sort-type'
                 value={order.type}
                 className='text-black w-full mx-auto my-3 rounded-md'
-                onChange={(e) => handleOnChangeSelect(e)}
+                onChange={(e) => {
+                  handleOnChangeSelect(e)
+                  forceCheck()
+                }}
               >
                 <option value='name'>Nombre</option>
                 <option value='added'>Fecha de añadido</option>
@@ -87,7 +91,10 @@ const SideMenu = () => {
                     name='order'
                     value='asc'
                     checked={order.direction === 'asc'}
-                    onChange={(e) => setOrder({ type: order.type, direction: e.target.value })}
+                    onChange={(e) => {
+                      setOrder({ type: order.type, direction: e.target.value })
+                      forceCheck()
+                    }}
                   />
                   <label htmlFor='asc'> Ascendente</label>
                 </div>
@@ -98,7 +105,10 @@ const SideMenu = () => {
                     name='order'
                     value='desc'
                     checked={order.direction === 'desc'}
-                    onChange={(e) => setOrder({ type: order.type, direction: e.target.value })}
+                    onChange={(e) => {
+                      setOrder({ type: order.type, direction: e.target.value })
+                      forceCheck()
+                    }}
                   />
                   <label htmlFor='desc'> Descendente</label>
                 </div>
