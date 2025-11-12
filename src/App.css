@@ -9,3 +9,18 @@ html {
     background: linear-gradient(to right, #16142f, #0f1a4e);
     min-width: fit-content;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 500ms ease-in-out forwards;
+  will-change: opacity;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { animation: none; opacity: 1; }
+}

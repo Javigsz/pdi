@@ -3,7 +3,7 @@ import { getItemUrl } from '../../utils/funcs'
 import { selectedArray } from '../../utils/selectedArray'
 import { TbEyeCheck } from 'react-icons/tb'
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { FiltersContext } from '../../context/filters'
 import ImageLoader from './ImageLoader'
 import useUpdateApi from '../../hooks/useUpdateApi'
@@ -12,18 +12,16 @@ import { useLocation } from 'wouter'
 
 const ItemCopy = ({ item, data, setData }) => {
   const { selected } = useContext(FiltersContext)
-  const [isReady, setIsReady] = useState(false)
+  // const [isReady, setIsReady] = useState(false)
   const [showButtons, setShowButtons] = useState(false)
   const { updateItem, deleteItem } = useUpdateApi()
   const { isLoggedIn } = useContext(AuthContext)
   const [pathname] = useLocation()
   const modificableItem = isLoggedIn && !pathname.includes('user')
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsReady(true)
-    }, 300)
-  }, [])
+  // useEffect(() => {
+  //   setIsReady(true)
+  // }, [])
 
   const handleInputChangeSeason = (e) => {
     const newItem = structuredClone(item)
@@ -64,11 +62,10 @@ const ItemCopy = ({ item, data, setData }) => {
     <>
       <div
         id='item'
-        className={`${isReady ? 'visible opacity-100' : 'invisible opacity-0 transition-opacity duration-300'} relative group flex items-center m-2 bg-black rounded-md
+        className={`fade-in relative group flex items-center m-2 bg-black rounded-md
         hover:flex-col hover:items-start hover:z-10 hover:border-[#f25f4c] border-transparent hover:border-2 md:hover:w-[280px] 
-        
         ${selected === 'Videojuegos' ? 'w-[120px] h-[100px] md:h-32 md:w-52 md:hover:h-48' : 'h-[100px] w-20 md:h-[190px] md:w-32 hover:w-[120px]'}
-        transition-[width,height] duration-200 ease-in-out`}
+        transition-all duration-300`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -82,7 +79,7 @@ const ItemCopy = ({ item, data, setData }) => {
           </div>
           <div
             id='title'
-            className='overflow-hidden hidden md:group-hover:flex md:group-hover:max-w-[60%] group-hover:hidden group-hover:w-full z-10'
+            className='overflow-hidden px-1 hidden md:group-hover:flex md:group-hover:max-w-[60%] group-hover:hidden group-hover:w-full z-10'
           >
             <p className='md:block hidden text-xs w-full break-words opacity-80 text-center group-hover:opacity-100 group-hover:font-bold group-hover:text-[#f25f4c] group-hover:text-xs sm:group-hover:text-base'>
               {item.name}

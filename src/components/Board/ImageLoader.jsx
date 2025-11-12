@@ -6,7 +6,7 @@ const ImageLoader = ({ src, alt }) => {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <LazyLoad offset={100} once className='w-full h-full'>
+    <LazyLoad offset={200} once className='w-full h-full'>
       <div className='w-full h-full relative'>
         {!loaded && (
           <div className='absolute inset-0 flex items-center justify-center bg-white bg-opacity-10 z-10'>
