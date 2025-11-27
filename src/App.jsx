@@ -20,7 +20,7 @@ function App () {
     <>
       <FiltersProvider>
         <DataProvider>
-          <header className='text-white font-roboto-slab'>
+          <header className='text-white font-roboto-slab z-200'>
             <Header />
           </header>
           <Loading />
