@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../context/authContext'
 import useAuth from '../hooks/useAuth'
-import MoreInfo from './moreInfo'
+import MoreInfo from './MoreInfo'
 
 const Login = () => {
   const [registing, setRegisting] = useState(false)
