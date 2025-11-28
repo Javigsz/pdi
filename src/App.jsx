@@ -20,11 +20,18 @@ function App () {
     <>
       <FiltersProvider>
         <DataProvider>
-          <header className='text-white font-roboto-slab z-200'>
+          <div className='scanlines' />
+          <div className='intro-wrap'>
+            <div className='noise' />
+            <div className='noise noise-moving' />
+            <div className='time'>--:--</div>
+            <div className='recordSpeed'>SLP 0:00:00</div>
+          </div>
+          <header className='text-white font-roboto-slab'>
             <Header />
           </header>
           <Loading />
-          <main className='flex text-white font-roboto-slab justify-center'>
+          <main className='flex text-white font-roboto-slab justify-center relative z-[1000] '>
             <Switch>
               <Route path='/contact'> <Contact /> </Route>
               <Route path='/help'> <Help /> </Route>

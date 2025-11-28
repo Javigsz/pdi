@@ -1,0 +1,62 @@
+/* button.css */
+.btn {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.btn a {
+  color: white;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f25f4c;
+  display: block;
+  position: relative;
+  padding: 2px 20px;
+
+  -webkit-tap-highlight-color: rgba(165, 23, 23, 0);
+  text-shadow: 0px 1px 0px #000;
+  filter: dropshadow(color=#000000, offx=0px, offy=1px);
+
+  -webkit-box-shadow: inset 0 0px 0 #ee9185, 0 8px 0 #ac4133;
+  -moz-box-shadow: inset 0 0px 0 #ee9185, 0 8px 0 #ac4133;
+  box-shadow: inset 0 0px 0 #ee9185, 0 8px 0 #ac4133;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.btn a:active {
+  top: 10px;
+  background-color: #f09083;
+
+  -webkit-box-shadow: inset 0 1px 0 #ac4133, inset 0 -3px 0 #ac4133;
+  -moz-box-shadow: inset 0 1px 0 #ac4133, inset 0 -3px 0 #ac4133;
+  box-shadow: inset 0 1px 0 #ac4133, inset 0 -3px 0 #ac4133;
+}
+
+.btn:after {
+  content: "";
+  height: 106%;
+  width: 106%;
+  padding: 0px;
+  position: absolute;
+  top: 8px;
+  left: -2px;
+  z-index: -1;
+  background-color: #ffffff65;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+} 
+
+.btn:hover:after {
+  opacity: 1;
+}

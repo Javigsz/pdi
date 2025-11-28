@@ -4,11 +4,27 @@
 
 @import 'tailwindcss/utilities';
 
+@import url('bg.scss');
+
 html {
     /* background-color: #16142f; */
-    background: linear-gradient(to right, #16142f, #17287c);
+    /* background: linear-gradient(to right, #16142f, #17287c); */
     min-width: fit-content;
 }
+
+/* #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+  pointer-events: none;
+  filter: brightness(0.3);
+} */
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -24,3 +40,8 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .fade-in { animation: none; opacity: 1; }
 }
+
+.font-press-start {
+  font-family: 'Press Start 2P';
+}
+
