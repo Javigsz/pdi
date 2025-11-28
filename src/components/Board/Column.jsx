@@ -67,7 +67,7 @@ const Column = ({ icon, name }) => {
             key={openModal.toString()}
             isOpen={openModal}
             className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-[500px] lg:w-[600px] max-h-[70svh] bg-[#0f0e17] p-4 rounded border-white border-2'
-            overlayClassName='fixed inset-0 bg-black bg-opacity-50'
+            overlayClassName='fixed inset-0 bg-black bg-opacity-50 z-[4000]'
             onRequestClose={() => setOpenModal(false)}
           >
             <AddItemModal setOpenModal={setOpenModal} selected={selected} name={name} data={tablesData} setData={setTablesData} />

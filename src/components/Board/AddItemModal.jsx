@@ -106,7 +106,7 @@ const AddItemModal = ({ name, setOpenModal, data, setData }) => {
 
   return (
     <>
-      <div className='h-full w-full text-white z-10 font-roboto-slab text-xs md:text-base'>
+      <div className='h-full w-full text-white font-roboto-slab text-xs md:text-base'>
         <h1>Añadir {selected}</h1>
         <div className='flex justify-between relative'>
           <input
