@@ -30,7 +30,7 @@ function moreInfo () {
                 <div className='flex items-center justify-center hover:scale-110 transition-all hover:z-20'>
                   <video className='hover:border-2 hover:border-white' src='/pdi1.mp4' autoPlay loop muted alt='Video' />
                 </div>
-                <p className='text-center text-sm mt-2'>Busca y guarda una nueva serie/película/etc. y guárdala para ti.</p>
+                <p className='text-center text-sm mt-2'>Busca y selecciona una nueva serie/película/etc. y guárdala para ti.</p>
               </div>
               <div className='md:mx-20 my-10 flex flex-col justify-center items-center'>
                 <div className='flex items-center justify-center hover:scale-110 transition-all hover:z-20'>
